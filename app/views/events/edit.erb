@@ -1,0 +1,10 @@
+
+
+    <ul><h2><%= @event.name %></h2>
+      <li>Description: <%= @event.description %></li>
+      <li>Location: <%= @event.location_id %></li>
+      <li>Host: <%= @event.host_id %></li>
+      <li>Guests: <%= @event.guests.pluck(:username).to_sentence %>
+      </li>
+    </ul>
+  </li

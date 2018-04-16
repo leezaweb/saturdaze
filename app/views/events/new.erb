@@ -1,0 +1,11 @@
+<%= form_for @event do |f| %>
+<%= f.label :name %><br>
+<%= f.text_field :name %><br><br>
+<%= f.label :description %><br>
+<%= f.text_area :description %><br><br>
+<%= f.collection_check_boxes :guest_ids, User.all, :id, :username %>
+<%= f.label :host_id %><br>
+<%= f.number_field :host_id %><br><br>
+
+<%= f.submit %>
+<% end %>
