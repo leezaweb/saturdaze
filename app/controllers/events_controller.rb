@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show,:edit,:update,:delete]
+  before_action :set_event, only: [:show,:edit,:update,:destroy]
 
     @@ids ||= []
 
@@ -14,12 +14,8 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
-    @location = Location.find_by(name: params[:event][:location_id])
-    @event.location = @location
-
+    @event = Event.create(event_params)
     if @event.valid?
-      @event.save
       redirect_to events_path
     else
       render :new
@@ -32,7 +28,7 @@ class EventsController < ApplicationController
   def update
     @event.update(event_params)
     if @event.valid?
-      redirect_to event_path
+      redirect_to event_path(@event)
     else
       render :edit
     end
@@ -40,6 +36,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
+    redirect_to events_path
   end
 
   def add_guest
@@ -59,7 +56,5 @@ class EventsController < ApplicationController
     puts params
     params.require(:event).permit(Event.column_names, guest_ids: [])
   end
-
-
 
 end

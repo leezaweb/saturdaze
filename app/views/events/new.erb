@@ -1,12 +1,13 @@
 <h1>Add an Event</h1>
 <%= form_for Event.new do |f| %>
-<%= f.label :name, "Event Name:" %>
-<%= f.text_field :name, {size:"48"} %><br><br>
-<%= f.label :date, "Event Date:" %>
-<%= radio_button_tag :date, :date%> April 16, 2018<br><br>
-<%= f.label :description, "Event Description:" %><br>
-<%= f.text_area :description,{rows: "9",cols: "60"} %><br><br>
-<%= f.label :location_id, "Location:" %><br>
+  <%= f.label :name, "Event Name:" %>
+  <%= f.text_field :name, {size:"48"} %><br><br>
+  <%= f.label :date, "Event Date:" %>
+  <%= radio_button_tag :date, :date%> April 16, 2018<br><br>
+  <%= f.label :description, "Event Description:" %><br>
+  <%= f.text_area :description,{rows: "9",cols: "60"} %><br><br>
+  <%= f.label :location_id, "Location:" %><br>
+  <%= f.collection_select :location_id, Location.all, :id, :name %><br><br>
 
 
 <label>Event Guests:</label>
@@ -19,7 +20,7 @@
       <option value="<%= guest.fullname %>">
     <% end %>
     <% else %>
-    <% User.all.each do |guesst| %>
+    <% User.all.each do |guest| %>
       <option value="<%= guest.fullname %>">
     <% end %>
     <% end %>

@@ -7,9 +7,9 @@
   <%= f.label :description %><br>
   <%= f.text_area :description %><br><br>
   <%= f.label :location %><br>
-  <%= f.collection_select :location_id, Location.all, :name, :name %><br><br>
+  <%= f.collection_select :location_id, Location.all, :id, :name %><br><br>
   <%= f.label :invite_guests %><br>
-  <%= f.collection_check_boxes :guest_ids, User.all, :id, :username %>
+  <%= f.collection_check_boxes :guest_ids, User.all, :id, :fullname %>
   <%= f.label :host_id %><br>
   <%= f.number_field :host_id %><br><br>
   <%= f.submit %>
