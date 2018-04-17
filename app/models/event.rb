@@ -3,6 +3,5 @@ class Event < ApplicationRecord
   has_many :guests, class_name: 'User', through: :rsvps
   belongs_to :host, class_name: 'User'
 
-  accepts_nested_attributes_for :guests
-
+  belongs_to :location
 end

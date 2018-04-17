@@ -1,10 +1,16 @@
+<h1>Edit Event</h1>
 
 
-    <ul><h2><%= @event.name %></h2>
-      <li>Description: <%= @event.description %></li>
-      <li>Location: <%= @event.location_id %></li>
-      <li>Host: <%= @event.host_id %></li>
-      <li>Guests: <%= @event.guests.pluck(:full_name).to_sentence %>
-      </li>
-    </ul>
-  </li
+<%= form_for @event do |f| %>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %><br><br>
+  <%= f.label :description %><br>
+  <%= f.text_area :description %><br><br>
+  <%= f.label :location %><br>
+  <%= f.collection_select :location_id, Location.all, :name, :name %><br><br>
+  <%= f.label :invite_guests %><br>
+  <%= f.collection_check_boxes :guest_ids, User.all, :id, :username %>
+  <%= f.label :host_id %><br>
+  <%= f.number_field :host_id %><br><br>
+  <%= f.submit %>
+<% end %>
