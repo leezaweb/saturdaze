@@ -15,15 +15,23 @@
 <%#= text_field_tag 'guest_autocomplete', nil,{list: "guest_autocomplete"} %>
 <input list="guest_autocomplete" size="30">
   <datalist id="guest_autocomplete">
-
+    <% if @users  %>
+    <% User.where.not(id:@users.pluck(:id)).each do |guest| %>
+      <option value="<%= guest.fullname %>">
+    <% end %>
+    <% else %>
     <% User.all.each do |guest| %>
       <option value="<%= guest.fullname %>">
     <% end %>
-
+    <% end %>
 
   </datalist>
-  <button type="button">Add Guest to Guest List</button>
+  <button type="button">Add Guest to Guest List</button><%= @users.count %>
   <br>
+
+  <div id="ids">
+
+  </div>
 
   <div id="checked">
 
@@ -41,15 +49,27 @@ $(document).ready(function() {
 });
 
 $("button").click(function(event){
-event.preventDefault();
+  event.preventDefault();
+  var dict = {};
+  var guest = dict.guest=$("input[list='guest_autocomplete']").val();
+  console.log(guest)
 
-var name = $("input[list='guest_autocomplete']").val();
-
-var id = $("datalist option[value='" + name + "']:first").index() +1;
-
+   $.ajax({
+     url: "/add-guest",
+     type: "post",
+     data: dict,
+  //   success: function(){
+  //     alert('Saved Successfully');
+  //   },
+  //   error:function(){
+  //  alert('Error');
+  //   }
+   });
 $("input[list='guest_autocomplete']").val("");
-
-$("#checked").append('<label for=\"event_guest_ids_' + id + '\">' + name + '</label>: <input type=\"checkbox\" value=\"' + id + '\" checked=\"checked\" name=\"event[guest_ids][]\" id=\"event_guest_ids_' + id + '\">');
+$("#ids").html('<input type=\"hidden\" name=\"event[guest_ids][]\" value=\"' + <%=@users.pluck(:id)%> + '\">');
+$("#checked").html('<%= f.collection_check_boxes :guest_ids, @users, :id, :fullname, {} do |b|
+  b.label(style: "margin-right:50px;white-space:nowrap; display:inline-block;") { b.label + ": "+ b.check_box(checked:"checked")}
+end  %>');
 });
 <%end  %>
 

@@ -1,16 +1,58 @@
 <h1>Edit Event</h1>
-
-
 <%= form_for @event do |f| %>
-  <%= f.label :name %><br>
-  <%= f.text_field :name %><br><br>
-  <%= f.label :description %><br>
-  <%= f.text_area :description %><br><br>
-  <%= f.label :location %><br>
+  <%= f.label :name, "Event Name:" %>
+  <%= f.text_field :name, {size:"48"} %><br><br>
+  <%= f.label :date, "Event Date:" %>
+  <%= radio_button_tag :date, :date%> April 16, 2018<br><br>
+  <%= f.label :description, "Event Description:" %><br>
+  <%= f.text_area :description,{rows: "9",cols: "60"} %><br><br>
+  <%= f.label :location_id, "Location:" %><br>
   <%= f.collection_select :location_id, Location.all, :id, :name %><br><br>
-  <%= f.label :invite_guests %><br>
-  <%= f.collection_check_boxes :guest_ids, User.all, :id, :fullname %>
-  <%= f.label :host_id %><br>
-  <%= f.number_field :host_id %><br><br>
-  <%= f.submit %>
+
+
+<label>Event Guests:</label>
+<%#= f.text_field :guest_ids, list: "guest_autocomplete" %>
+<%#= text_field_tag 'guest_autocomplete', nil,{list: "guest_autocomplete"} %>
+<input list="guest_autocomplete" size="30">
+  <datalist id="guest_autocomplete">
+
+    <% User.all.each do |guest| %>
+      <option value="<%= guest.fullname %>">
+    <% end %>
+
+
+  </datalist>
+  <button type="button">Add Guest to Guest List</button><%= @users.count %>
+  <br>
+
+  <div id="checked">
+
+  </div>
+
+
+<%= f.hidden_field :host_id, value: 1 %><br><br>
+
+<%= f.submit %>
+
+
+<%= javascript_tag do %>
+$(document).ready(function() {
+  $("body").css("background","linear-gradient(to bottom, #fff 0%,  #fff 50%, #aaa 100%)");
+});
+
+$("button").click(function(event){
+event.preventDefault();
+
+var name = $("input[list='guest_autocomplete']").val();
+
+var id = $("datalist option[value='" + name + "']:first").index() +1;
+
+$("input[list='guest_autocomplete']").val("");
+
+$("#checked").append('<label for=\"event_guest_ids_' + id + '\">' + name + '</label>: <input type=\"checkbox\" value=\"' + id + '\" checked=\"checked\" name=\"event[guest_ids][]\" id=\"event_guest_ids_' + id + '\">');
+});
+<%end  %>
+
+
+
 <% end %>
