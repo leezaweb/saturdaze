@@ -1,6 +1,11 @@
-<ul><h2><%= @event.name %></h2>
-  <li>Description: <%= @event.description %></li>
+
+
+    <ul><h2><%= @event.name %></h2>
+        <li>Description: <%= @event.description %></li>
   <li>Location: <%= @event.location.name %></li>
   <li>Host: <%= @event.host.fullname %></li>
-  <li>Guests: <%= @event.guests.pluck(:username).to_sentence %></li>
-</ul>
+      <li><%= pluralize(@event.guests.count, 'Guest')%>: <%= @event.guests.pluck(:full_name).to_sentence %></li>
+
+      <%= button_to 'Edit', edit_event_path(@event) %><%= button_to 'Delete', @event, method: :delete,data: {confirm: "Are you sure?"} %>
+    </ul>
+  

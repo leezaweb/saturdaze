@@ -1,19 +1,14 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+10.times do |x|
+    User.create(full_name:Faker::Name.name)
+    Event.create(name:Faker::SiliconValley.company, location_id:Location.create(name:Faker::StarWars.planet).id, host_id:x+1)
 
 
-5.times do |x|
-    User.create(username:Faker::Name.name, first_name:Faker::FamilyGuy.character.split(' ').first, last_name:Faker::FamilyGuy.character.split(' ').last)
-    Event.create(name:Faker::SiliconValley.company, location_id:Location.create(name:Faker::StarWars.planet).id, host_id:x)
-end
-
-1..10.times do
-  5.times do |x|
-    Rsvp.create(event_id:x,guest_id:User.create(username:Faker::Name.name).id)
+20.times do
+  10.times do |x|
+    Rsvp.create(event_id:x+1,guest_id:User.create(first_name:Faker::FamilyGuy.character.split(' ').first, last_name:Faker::FamilyGuy.character.split(' ').last).id
+    Rsvp.find_or_create_by(event_id:(x-10).abs,guest_id:x+11)
+    Rsvp.find_or_create_by(event_id:(x+1).abs,guest_id:x+11)
+    Rsvp.find_or_create_by(event_id:(x-10).abs,guest_id:x+1)
   end
 end
