@@ -43,7 +43,7 @@ class EventsController < ApplicationController
   end
 
   def add_guest
-    @@ids << User.find_by(full_name: params[:guest]).id
+    @@ids << User.find_by(fullname: params[:guest]).id
     @users = User.find(@@ids)
     render :new
     # redirect_to new_event_path

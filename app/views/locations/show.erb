@@ -2,7 +2,7 @@
 
 <ul>
   <li>Description: <%= @location.description %></li>
-  <li>Events:</li>
+  <li><%= pluralize(@location.events.count, 'Event')%>:</li>
   <ul>
     <% @location.events.each do |event| %>
       <li><%= event.name %></li>

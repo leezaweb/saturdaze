@@ -16,11 +16,11 @@
   <datalist id="guest_autocomplete">
     <% if @users  %>
     <% User.where.not(id:@users.pluck(:id)).each do |guest| %>
-      <option value="<%= guest.full_name %>">
+      <option value="<%= guest.fullname %>">
     <% end %>
     <% else %>
     <% User.all.each do |guesst| %>
-      <option value="<%= guest.full_name %>">
+      <option value="<%= guest.fullname %>">
     <% end %>
     <% end %>
 
@@ -66,7 +66,7 @@ $("button").click(function(event){
    });
 $("input[list='guest_autocomplete']").val("");
 $("#ids").html('<input type=\"hidden\" name=\"event[guest_ids][]\" value=\"' + <%=@users.pluck(:id)%> + '\">');
-$("#checked").html('<%= f.collection_check_boxes :guest_ids, @users, :id, :full_name, {} do |b|
+$("#checked").html('<%= f.collection_check_boxes :guest_ids, @users, :id, :fullname, {} do |b|
   b.label(style: "margin-right:50px;white-space:nowrap; display:inline-block;") { b.label + ": "+ b.check_box(checked:"checked")}
 end  %>');
 });

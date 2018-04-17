@@ -3,11 +3,11 @@
 one:
   email: MyString
   password: MyString
-  full_name: MyString
+  fullname: MyString
   is_host: false
 
 two:
   email: MyString
   password: MyString
-  full_name: MyString
+  fullname: MyString
   is_host: false

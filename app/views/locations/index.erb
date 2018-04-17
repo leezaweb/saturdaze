@@ -6,7 +6,7 @@
     <ul><h2><%= link_to location.name, location_path(location) %></h2>
       <li><%= location.description %></li>
       <li><%= location.address %></li>
-      <li><%= location.events.pluck(:name).to_sentence %></li>
+      <li><%= pluralize(location.events.count, 'Event')%>:<%= location.events.pluck(:name).to_sentence %></li>
     </ul>
   <% end  %>
   </li>
