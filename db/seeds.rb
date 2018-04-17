@@ -8,8 +8,8 @@
 
 
 5.times do |x|
-    User.create(username:Faker::Name.name)
-    Event.create(name:Faker::SiliconValley.company, host_id:x)
+    User.create(username:Faker::Name.name, first_name:Faker::FamilyGuy.character.split(' ').first, last_name:Faker::FamilyGuy.character.split(' ').last)
+    Event.create(name:Faker::SiliconValley.company, location_id:Location.create(name:Faker::StarWars.planet).id, host_id:x)
 end
 
 1..10.times do

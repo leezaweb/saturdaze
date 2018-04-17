@@ -5,7 +5,6 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :password
       t.string :first_name
       t.string :last_name
-      t.string :username
       t.boolean :is_host
 
       t.timestamps

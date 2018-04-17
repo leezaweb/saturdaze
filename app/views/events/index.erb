@@ -6,8 +6,8 @@
 
     <ul><h2><%= link_to event.name, event_path(event) %></h2>
       <li>Description: <%= event.description %></li>
-      <li>Location: <%= event.location_id %></li>
-      <li>Host: <%= event.host_id %></li>
+      <li>Location: <%= event.location.name %></li>
+      <li>Host: <%= event.host.fullname %></li>
     </ul>
   <% end  %>
   </li>
