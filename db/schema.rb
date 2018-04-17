@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20180416181852) do
     t.string "name"
     t.string "description"
     t.integer "location_id"
+    t.date "date"
     t.integer "host_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -32,7 +33,7 @@ ActiveRecord::Schema.define(version: 20180416181852) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password"
-    t.string "username"
+    t.string "full_name"
     t.boolean "is_host"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
