@@ -1,0 +1,7 @@
+<h1><%= @amenity.name %></h1>
+
+<ul>
+  <li>Description: <%= @amenity.description %></li>
+  <li>Price: $<%= @amenity.price_change %></li>
+
+<button><%= link_to 'Edit', edit_amenity_path(@amenity) %></button>

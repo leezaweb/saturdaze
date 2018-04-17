@@ -1,0 +1,13 @@
+<h1>New Amenity</h1>
+
+<%= form_for @amenity do |f| %>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %><br><br>
+  <%= f.label :description %><br>
+  <%= f.text_area :description %><br><br>
+  <%= f.label :price %><br>
+  <% dollars = @amenity.price_in_cents.to_f.round(2)/100.to_i %>
+  <% display = sprintf( "%0.02f", dollars).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %>
+  $<%= f.text_field :price_in_cents, {value: display} %><br><br>
+  <%= f.submit %>
+<% end %>

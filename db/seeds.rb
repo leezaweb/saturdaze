@@ -19,3 +19,10 @@ end
     Rsvp.find_or_create_by(event_id:(x-10).abs,guest_id:x+1)
   end
 end
+
+20.times do |x|
+  10.times do |y|
+    EventAmenity.create(event_id:y+1, amenity_id:x+1) if x%5 == 0
+    EventAmenity.create(event_id:y+1, amenity_id:(x-10).abs) if x%3 == 0
+  end
+end

@@ -1,0 +1,2 @@
+class EventAmenitiesController < ApplicationController
+end

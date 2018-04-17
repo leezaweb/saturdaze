@@ -1,0 +1,12 @@
+<h1>Amenities</h1>
+
+<ul>
+  <% @amenities.each do |amenity| %>
+  <li>
+    <ul><h2><%= link_to amenity.name, amenity_path(amenity) %> $<%= amenity.price_change %></h2> 
+      <li>Description: <%= amenity.description %></li>
+    </ul>
+  <% end  %>
+  </li>
+
+</ul>

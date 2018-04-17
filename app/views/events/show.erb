@@ -2,6 +2,7 @@
   <li>Description: <%= @event.description %></li>
   <li>Location: <%= @event.location.name %></li>
   <li>Host: <%= @event.host.fullname %></li>
+  <li>Amenities: <%= @event.amenities.pluck(:name).to_sentence %></li>
   <li><%= pluralize(@event.guests.count, 'Guest')%>: <%= @event.guests.map {|guest| guest.fullname}.to_sentence %></li>
 
   <button><%= link_to 'Edit', edit_event_path(@event) %></button><%= button_to 'Delete', @event, method: :delete, data: {confirm: "Are you sure?"} %>
