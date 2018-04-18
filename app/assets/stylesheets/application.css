@@ -16,7 +16,7 @@ nav:first-of-type{
   background-color:#000
 }
 nav:last-of-type ul{
-  margin:0;padding:0
+  margin:0;padding:0;    line-height: 48px;
 }
 nav:last-of-type li{
   font-size:24px;
@@ -26,6 +26,9 @@ nav:last-of-type li{
   width: 25%;
   padding: 12px;
 }
+nav ul a {
+    font-size: 1em;
+  }
 nav:last-of-type li:nth-child(-n+4){
 width: 22%;
 }
@@ -99,6 +102,7 @@ form{
 [type="checkbox"], [type="radio"] {
     position: unset !important;
     opacity: 100 !important;
+    pointer-events: unset !important;
 }
 select{
   display:block;
@@ -107,7 +111,11 @@ textarea{
   height:150px
 }
 nav ul a:hover {
-    background-color: none
+    background-color: transparent
+}
+nav:last-of-type li:hover{
+    height: 80px;
+    margin-top: -9px;
 }
 
 label {

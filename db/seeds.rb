@@ -9,7 +9,7 @@ User.create(first_name: "Ryan", last_name: "Leeza", email: "admin@gmail.com", pa
   lastname = Faker::FamilyGuy.character.split(' ').last
 
   User.create(first_name: firstname,
-    last_name: lastname, email: "#{firstname}.#{lastname}@gmail.com",
+    last_name: lastname, email: "#{firstname.downcase}.#{lastname.downcase}@gmail.com",
     password:"password")
 
     Location.create(address:Faker::Address.street_address, name:Faker::StarWars.planet, description:Faker::Lorem.sentence(4))
@@ -29,7 +29,7 @@ end
 
 20.times do |x|
   10.times do |y|
-    EventAmenity.create(event_id:y+1, amenity_id:x+1) if x%5 == 0
-    EventAmenity.create(event_id:y+1, amenity_id:(x-10).abs) if x%3 == 0
+    EventAmenity.create(event_id:y+1, amenity_id:x+1) if x%10 == 0
+    EventAmenity.create(event_id:y+1, amenity_id:(x-10).abs) if x%6 == 0
   end
 end
