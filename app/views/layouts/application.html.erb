@@ -3,6 +3,7 @@
   <head>
     <title>EventPlanner</title>
     <%= csrf_meta_tags %>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"> -->
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -18,11 +19,11 @@
       <% if current_user.email == "admin@gmail.com"  %>
       <nav class="admin_menu">
       <ul>
-        <li><%= link_to 'Manage Events', events_path %></li>
-        <li><%= link_to 'Manage Locations', locations_path %></li>
-        <li><%= link_to 'Manage Amenities', amenities_path %></li>
+        <li><%= link_to 'Manage Events', '/manage/events' %></li>
+        <li><%= link_to 'Manage Locations', '/manage/locations' %></li>
+        <li><%= link_to 'Manage Amenities', '/manage/amenities' %></li>
 
-        <li><%= link_to 'Manage Users' %></li>
+        <li><%= link_to 'Manage Users','/manage/users' %></li>
         <li><%= link_to 'Sales Report', sales_path %></li>
       </ul>
       </nav>

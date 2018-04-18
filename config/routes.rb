@@ -17,5 +17,8 @@ Rails.application.routes.draw do
   resources :rsvps, only: :update
 
   get '/sales' => 'users#sales'
+  get '/manage/events' => 'events#all'
+  get '/manage/amenities' => 'amenities#all'
+  get '/manage/locations' => 'locations#all'
 
 end

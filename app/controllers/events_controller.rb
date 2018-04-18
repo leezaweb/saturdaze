@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
   end
+
   def create
     byebug
     @event = Event.create(event_params)

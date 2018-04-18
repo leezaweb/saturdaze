@@ -1,5 +1,7 @@
 <h1>Amenities</h1>
-<button><%= link_to "New Amenity", new_amenity_path %></button>
+<% if current_user.email == "admin@gmail.com"  %>
+  <button><%= link_to "New Amenity", new_amenity_path %></button>
+<% end  %>
 <ul>
   <% @amenities.each do |amenity| %>
   <li>

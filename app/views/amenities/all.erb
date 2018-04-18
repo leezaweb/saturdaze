@@ -1,0 +1,21 @@
+
+
+<table>
+  <th>
+    <td>name</td>
+    <td>description</td>
+    <td>price</td>
+    <td colspan="2"></td>
+  </th>
+  <% Amenity.all.each do |amenity|  %>
+
+  <tr>
+    <td><%= link_to amenity.name, amenity_path(amenity) %></td>
+    <td><%= amenity.description %></td>
+    <td><%= amenity.price_change %></td>
+    <td><button><%= link_to 'Edit', edit_amenity_path(amenity) %></button></td>
+    <td><button><%= link_to 'Delete', amenity, method: :delete, data: {confirm: "Are you sure?"} %></button></td>
+  </tr>
+  <% end %>
+
+</table>

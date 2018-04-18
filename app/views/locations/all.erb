@@ -1,0 +1,21 @@
+
+
+<table>
+  <th>
+    <td>name</td>
+    <td>description</td>
+    <td>address</td>
+    <td colspan="2"></td>
+  </th>
+  <% Location.all.each do |location|  %>
+
+  <tr>
+    <td><%= link_to location.name, location_path(location) %></td>
+    <td><%= location.description %></td>
+    <td><%= location.address %></td>
+    <td><button><%= link_to 'Edit', edit_location_path(location) %></button></td>
+    <td><button><%= link_to 'Delete', location, method: :delete, data: {confirm: "Are you sure?"} %></button></td>
+  </tr>
+  <% end %>
+
+</table>

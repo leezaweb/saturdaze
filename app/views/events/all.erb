@@ -1,0 +1,25 @@
+
+
+<table>
+  <th>
+    <td>name</td>
+    <td>location</td>
+    <td>host</td>
+    <td>guest count</td>
+    <td>amenity count</td>
+    <td colspan="2"></td>
+  </th>
+  <% Event.all.each do |event|  %>
+
+  <tr>
+    <td><%= link_to event.name, event_path(event) %></td>
+    <td><%= event.location.name %></td>
+    <td><%= event.host.first_name + " " + event.host.last_name%></td>
+    <td><%= event.guests.count %></td>
+    <td><%= event.amenities.count %></td>
+    <td><button><%= link_to 'Edit', edit_event_path(event) %></button></td>
+    <td><button><%= link_to 'Delete', event, method: :delete, data: {confirm: "Are you sure?"} %></button></td>
+  </tr>
+  <% end %>
+
+</table>

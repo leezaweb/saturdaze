@@ -1,0 +1,19 @@
+
+
+<table>
+  <th>
+    <td>name</td>
+    <td>email</td>
+    <td colspan="2"></td>
+  </th>
+  <% User.all.each do |user|  %>
+
+  <tr>
+    <td><%= link_to user.first_name + " " + user.last_name, user_path(user) %></td>
+    <td><%= user.email %></td>
+    <td><button><%= link_to 'Edit', edit_user_path(user) %></button></td>
+    <td><button><%= link_to 'Delete', user, method: :delete, data: {confirm: "Are you sure?"} %></button></td>
+  </tr>
+  <% end %>
+
+</table>

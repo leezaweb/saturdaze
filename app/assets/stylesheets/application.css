@@ -3,7 +3,7 @@
 .user_menu li{display:inline-block;width:18%}
 body,html{width:100%;height:100%;margin:0; font-family: "Lucida Console", Monaco, monospace
 }
-main{width: 50%;margin: 0 auto;padding:350px 25px; background-color:white;}
+main{width: 100%;margin: 0 auto;padding:350px 25px; background-color:white;}
 header{
   position:fixed;
   width:100%;
@@ -56,10 +56,30 @@ nav button{
   background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
   padding:24px 0 0;
 }
-a{text-decoration:none;}
+a{text-decoration:none;
+padding-right:3px;color:#2cb5e9 }
 .errors{color:red}
 .field_with_errors{
   background-color: red;
   padding: 3px;
   display: inline-block;
+}
+
+tr:nth-child(odd) > *:nth-child(-n+5){
+    background-color: #eee;
+    text-align: left;
+    padding-right: 84px
+}
+td > a:hover, button:hover, tbody tr:hover{
+  color: purple;
+  position:relative;
+  top:-1px;
+  box-shadow: 1px 1px 1px 1px #ccc;
+  border-radius: 3px
+}
+
+td{
+
+      vertical-align: top;
+      padding:6px
 }
