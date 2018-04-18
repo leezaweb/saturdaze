@@ -3,7 +3,7 @@
 .user_menu li{display:inline-block;width:18%}
 body,html{width:100%;height:100%;margin:0; font-family: "Lucida Console", Monaco, monospace
 }
-main{width: 100%;margin: 0 auto;padding:350px 25px; background-color:white;}
+main{width: 100%;margin: 0 auto;padding:275px 25px; background-color:white;}
 main > ul{width:50%;margin:auto}
 header{
   position:fixed;
@@ -78,7 +78,7 @@ tr:nth-child(odd) > *:nth-child(-n+5){
     text-align: left;
     padding-right: 84px
 }
-td > a:hover, button:hover, tbody tr:hover{
+td > a:hover, button:hover, tbody tr:not(:first-child):hover{
   color: purple;
   position:relative;
   top:-1px;
@@ -121,4 +121,9 @@ nav:last-of-type li:hover{
 label {
     font-size: 15px;
     color: #000;
+}
+th {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
 }

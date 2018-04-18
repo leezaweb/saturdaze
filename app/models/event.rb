@@ -6,6 +6,6 @@ class Event < ApplicationRecord
   belongs_to :host, class_name: 'User'
   belongs_to :location
 
-  validates :name, :description, :location_id, :host_id, presence: true
+  # validates :name, :description, :location_id, :host_id, presence: true
 
 end
