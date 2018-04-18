@@ -1,7 +1,9 @@
 class EventsController < ApplicationController
   before_action :require_login
   before_action :set_event, only: [:show,:edit,:update,:destroy]
-
+  def new
+    @event = Event.new
+  end
   def create
     @event = Event.create(event_params)
     if @event.valid?
