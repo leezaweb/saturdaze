@@ -1,4 +1,3 @@
-<h1>New Amenity</h1>
 <% if @amenity.errors.any? %>
 <ul class="errors">
   <% @amenity.errors.full_messages.each do |msg|  %>
@@ -9,6 +8,7 @@
 </ul>
 <% end  %>
 <%= form_for @amenity do |f| %>
+<h1>New Amenity</h1>
   <%= f.label :name %><br>
   <%= f.text_field :name %><br><br>
   <%= f.label :description %><br>

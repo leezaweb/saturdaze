@@ -1,5 +1,4 @@
 <div style="margin-top:-150px">
-  <h1>Create Account</h1>
 
 <% if @user.errors.any? %>
 <ul class="errors">
@@ -12,6 +11,7 @@
 <% end  %>
 
 <%= form_for @user do |f| %>
+<h1>Create Account</h1>
   First Name: <%= f.text_field :first_name %><br>
   Last Name: <%= f.text_field :last_name %><br>
   Email: <%= f.text_field :email %><br>

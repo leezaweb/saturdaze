@@ -79,7 +79,15 @@ td > a:hover, button:hover, tbody tr:hover{
 }
 
 td{
+  vertical-align: top;
+    padding:6px
+}
+table{
+  margin:auto;
+  display:block
+}
 
-      vertical-align: top;
-      padding:6px
+form{
+  width:50%;
+  margin:auto
 }

@@ -20,5 +20,6 @@ Rails.application.routes.draw do
   get '/manage/events' => 'events#all'
   get '/manage/amenities' => 'amenities#all'
   get '/manage/locations' => 'locations#all'
+  get '/manage/users' => 'users#index'
 
 end

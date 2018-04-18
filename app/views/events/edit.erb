@@ -1,4 +1,3 @@
-<h1>Edit Event</h1>
 <% if @event.errors.any? %>
 <ul class="errors">
   <% @event.errors.full_messages.each do |msg|  %>
@@ -9,7 +8,7 @@
 </ul>
 <% end  %>
 <%= form_for @event do |f| %>
-
+<h1>Edit Event</h1>
   <%= f.label :name, "Event Name:" %>
   <%= f.text_field :name, {size:"48"} %><br><br>
   <%= f.label :date, "Event Date:" %>
