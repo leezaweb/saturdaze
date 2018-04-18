@@ -6,10 +6,10 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'jquery','jquery_ujs' %>
+    <%#= javascript_include_tag 'jquery','jquery_ujs' %>
     <style>
     .admin_menu li{display:inline-block;width:18%}
-    .user_menu li{display:inline-block;width:33%}
+    .user_menu li{display:inline-block;width:20%}
     body,html{width:100%;height:100%;margin:0}
     main{width: 50%;margin: 0 auto;padding:150px 25px 25px; background-color:white;}
     header{position:fixed;width:100%;margin:0}
@@ -25,22 +25,26 @@
 
   <body>
     <header>
-    <nav class="admin_menu">
-    <ul>
-      <li><%= link_to 'Manage Events', events_path %></li>
-      <li><%= link_to 'Manage Locations', locations_path %></li>
-      <li><%= link_to 'Manage Amenities', amenities_path %></li>
 
-      <li><%= link_to 'Manage Users' %></li>
-      <li><%= link_to 'Sales Report' %></li>
-    </ul>
-  </nav>
-  <nav class="user_menu">
-    <ul>
-      <li><%= link_to 'Create Event', new_event_path %></li>
-      <li><%= link_to 'Browse Events', events_path %></li>
-      <li><%= link_to 'My Events' %></li>
-    </ul>
+      <nav class="admin_menu">
+      <ul>
+        <li><%= link_to 'Manage Events', events_path %></li>
+        <li><%= link_to 'Manage Locations', locations_path %></li>
+        <li><%= link_to 'Manage Amenities', amenities_path %></li>
+
+        <li><%= link_to 'Manage Users' %></li>
+        <li><%= link_to 'Sales Report' %></li>
+      </ul>
+      </nav>
+
+      <nav class="user_menu">
+      <ul>
+        <li><%= link_to 'Create Event', new_event_path %></li>
+        <li><%= link_to 'Browse Locations', locations_path %></li>
+        <li><%= link_to 'Browse Amenities', amenities_path %></li>
+        <li><%= link_to 'My Events', events_path %></li>
+      </ul>
+
   </nav>
 </header>
 <section>

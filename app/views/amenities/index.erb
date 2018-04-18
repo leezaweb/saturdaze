@@ -1,9 +1,9 @@
 <h1>Amenities</h1>
-
+<button><%= link_to "New Amenity", new_amenity_path %></button>
 <ul>
   <% @amenities.each do |amenity| %>
   <li>
-    <ul><h2><%= link_to amenity.name, amenity_path(amenity) %> $<%= amenity.price_change %></h2> 
+    <ul><h2><%= link_to amenity.name, amenity_path(amenity) %> $<%= amenity.price_change %></h2>
       <li>Description: <%= amenity.description %></li>
     </ul>
   <% end  %>

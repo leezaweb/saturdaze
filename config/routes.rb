@@ -6,4 +6,11 @@ Rails.application.routes.draw do
   resources :users
   match '/add-guest', to: 'events#add_guest',via: [:get, :post]
 
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+
 end

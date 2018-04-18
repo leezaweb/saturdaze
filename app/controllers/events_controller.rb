@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :require_login
   before_action :set_event, only: [:show,:edit,:update,:destroy]
 
 
@@ -36,13 +37,17 @@ class EventsController < ApplicationController
 
   private
 
+  def require_login
+    return head(:forbidden) unless session.include? :user_id
+  end
+
   def set_event
     @event = Event.find(params[:id])
   end
 
   def event_params
     puts params
-    params.require(:event).permit(Event.column_names, guest_ids: [])
+    params.require(:event).permit(Event.column_names, guest_ids: [], amenity_ids: [])
   end
 
 end

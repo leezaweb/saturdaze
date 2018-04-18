@@ -1,4 +1,5 @@
 class AmenitiesController < ApplicationController
+  before_action :require_login
   before_action :set_amenity, only: [:show,:edit,:update,:destroy]
 
   def index
@@ -33,6 +34,10 @@ class AmenitiesController < ApplicationController
   end
 
   private
+
+  def require_login
+    return head(:forbidden) unless session.include? :user_id
+  end
 
   def dollars_to_cents(str)
     str.gsub(",", "").to_f.round(2)*100.to_i

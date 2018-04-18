@@ -1,4 +1,5 @@
 class LocationsController < ApplicationController
+  before_action :require_login
   before_action :set_location, only: [:show,:edit,:update,:destroy]
 
   def index
@@ -33,6 +34,10 @@ class LocationsController < ApplicationController
   end
 
   private
+
+  def require_login
+    return head(:forbidden) unless session.include? :user_id
+  end
 
   def set_location
     @location = Location.find(params[:id])
