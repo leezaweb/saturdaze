@@ -1,4 +1,15 @@
-<h1>Create Account</h1>
+<div style="margin-top:-150px">
+  <h1>Create Account</h1>
+
+<% if @user.errors.any? %>
+<ul class="errors">
+  <% @user.errors.full_messages.each do |msg|  %>
+  <li>
+    <%= msg %>
+  </li>
+  <% end  %>
+</ul>
+<% end  %>
 
 <%= form_for @user do |f| %>
   First Name: <%= f.text_field :first_name %><br>
@@ -8,3 +19,4 @@
   Password Confirmation: <%= f.password_field :password_confirmation %><br>
   <%= f.submit "Create Account" %>
 <% end %>
+</div>

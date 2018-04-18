@@ -5,6 +5,21 @@
   <li>Amenities: <%= @event.amenities.pluck(:name).to_sentence %></li>
   <li><%= pluralize(@event.guests.count, 'Guest')%>: <%= @event.guests.map {|guest| guest.fullname}.to_sentence %></li>
 
+<% if @event.guest_ids.include?(current_user.id)  %>
+  <% rsvp = Rsvp.find_by(event_id:@event.id, guest_id:current_user.id)  %>
+  <% if rsvp %>
+    <% if rsvp.is_commited.nil? || rsvp.is_commited == false %>
+      <button><%= link_to 'RSVP', rsvp_path(rsvp), method: :put %></button>
+    <% else %>
+      <button><%= link_to 'Cancel RSVP', rsvp_path(rsvp), method: :put %></button>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+
+<% if @event.host_id == current_user.id  %>
   <button><%= link_to 'Edit', edit_event_path(@event) %></button>
   <button><%= link_to 'Delete', @event, method: :delete, data: {confirm: "Are you sure?"} %></button>
+<% end %>
 </ul>
