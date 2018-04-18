@@ -1,0 +1,34 @@
+<h1>Sales Report</h1>
+
+<% grand_total = 0 %>
+<% Event.all.each do |event| %>
+<ul>
+  <li><%= event.name %></li>
+  <ul>
+  <% total = 0 %>
+  <% event.amenities.each do |amenity| %>
+    <li><%= amenity.name %></li>
+    <ul>
+      <li>$<%= amenity.price_change %></li>
+    </ul>
+    <% total += amenity.price_in_cents %>
+  <% end %>
+  </ul>
+  <% grand_total += total %>
+  <h4>Event Earnings: $<%= sprintf("%0.02f", total/100.00).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h4>
+</ul>
+<% end %>
+<h3>Fiscal Year Earnings: $<%= sprintf("%0.02f", grand_total/100.00).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+
+<h1>Average # of Guests</h1>
+
+<% guest_total = 0 %>
+<% event_count = 0 %>
+<% Event.all.each do |event| %>
+  <ul>
+    <li><%= event.name %> - <%= pluralize(event.guests.count, 'Guest') %></li>
+  </ul>
+  <% guest_total += event.guests.count %>
+  <% event_count += 1 %>
+<% end %>
+<h3>Average: <%= pluralize((guest_total/event_count), "Guest") %></h3>
