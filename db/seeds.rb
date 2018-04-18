@@ -2,10 +2,16 @@
   Amenity.create(name:Faker::Job.title, description:Faker::Lorem.sentence(4), price_in_cents:Faker::Number.between(10000, 100000))
 end
 
+User.create(first_name: "Ryan", last_name: "Leeza", email: "admin@gmail.com", password: "admin")
+
 10.times do |x|
-    User.create(first_name:Faker::FamilyGuy.character.split(' ').first,
-    last_name:Faker::FamilyGuy.character.split(' ').last,
+  firstname = Faker::FamilyGuy.character.split(' ').first
+  lastname = Faker::FamilyGuy.character.split(' ').last
+
+  User.create(first_name: firstname,
+    last_name: lastname, email: "#{firstname}.#{lastname}@gmail.com",
     password:"password")
+
     Location.create(address:Faker::Address.street_address, name:Faker::StarWars.planet, description:Faker::Lorem.sentence(4))
     Event.create(name:Faker::SiliconValley.company, location_id:x+1, host_id:x+1, description:Faker::Lorem.sentence(4))
 end
