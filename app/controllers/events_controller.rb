@@ -6,7 +6,6 @@ class EventsController < ApplicationController
   end
 
   def create
-    byebug
     @event = Event.create(event_params)
     if @event.valid?
       redirect_to events_path
