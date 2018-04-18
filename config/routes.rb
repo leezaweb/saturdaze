@@ -16,4 +16,6 @@ Rails.application.routes.draw do
   root 'events#index'
   resources :rsvps, only: :update
 
+  get '/sales' => 'users#sales'
+
 end
