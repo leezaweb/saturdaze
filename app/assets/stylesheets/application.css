@@ -8,17 +8,14 @@ header{
   position:fixed;
   width:100%;
   margin:0;
+  box-shadow: 0px 0px 24px 3px #000000;
 }
 nav:first-of-type{
-  line-height:0;
   padding:1px 0;
   background-color:#000
 }
 nav:last-of-type ul{
   margin:0;padding:0
-}
-nav:last-of-type{
-  box-shadow: 0px 0px 12px 2px #000000;
 }
 nav:last-of-type li{
   font-size:24px;
@@ -28,6 +25,13 @@ nav:last-of-type li{
   width: 25%;
   padding: 12px;
 }
+nav:last-of-type li:nth-child(-n+4){
+width: 22%;
+}
+nav:last-of-type li:nth-child(5){
+  width:12%
+}
+
 nav:last-of-type li:nth-child(-n+4){
 
   border-right:1px solid #000;
@@ -84,7 +88,6 @@ td{
 }
 table{
   margin:auto;
-  display:block
 }
 
 form{
