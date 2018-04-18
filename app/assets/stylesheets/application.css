@@ -1,9 +1,10 @@
-.hosted,.invited{float:left;width:50%,margin:25px;vertical-align:top;}
+.hosted,.invited{float:left;width:40%;margin:25px;vertical-align:top;}
 .admin_menu li{display:inline-block;width:18%}
 .user_menu li{display:inline-block;width:18%}
 body,html{width:100%;height:100%;margin:0; font-family: "Lucida Console", Monaco, monospace
 }
 main{width: 100%;margin: 0 auto;padding:350px 25px; background-color:white;}
+main > ul{width:50%;margin:auto}
 header{
   position:fixed;
   width:100%;
@@ -93,4 +94,23 @@ table{
 form{
   width:50%;
   margin:auto
+}
+
+[type="checkbox"], [type="radio"] {
+    position: unset !important;
+    opacity: 100 !important;
+}
+select{
+  display:block;
+}
+textarea{
+  height:150px
+}
+nav ul a:hover {
+    background-color: none
+}
+
+label {
+    font-size: 15px;
+    color: #000;
 }
