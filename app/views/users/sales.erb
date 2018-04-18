@@ -1,34 +1,62 @@
-<h1>Sales Report</h1>
+<h3>Sales Report</h3>
+<table>
+  <tr>
+    <th>Event</th>
+    <th>Amenities</th>
+  </tr>
+  <% grand_total = 0 %>
+  <% Event.all.each do |event|  %>
 
-<% grand_total = 0 %>
-<% Event.all.each do |event| %>
-<ul>
-  <li><%= event.name %></li>
-  <ul>
-  <% total = 0 %>
-  <% event.amenities.each do |amenity| %>
-    <li><%= amenity.name %></li>
-    <ul>
-      <li>$<%= amenity.price_change %></li>
-    </ul>
-    <% total += amenity.price_in_cents %>
-  <% end %>
-  </ul>
+  <tr>
+    <td><h4><%= link_to event.name, event_path(event) %></h4></td>
+    <td>
+      <table>
+        <% total = 0 %>
+        <% event.amenities.each do |amenity| %>
+        <tr>
+          <td><%= link_to amenity.name, amenity_path(amenity) %></td>
+          <td>$<%= amenity.price_change %></td>
+        </tr>
+        <% total += amenity.price_in_cents %>
+        <% end %>
+        <tr>
+          <td colspan="2">
+          <h4>Event Earnings: $<%= sprintf("%0.02f", total/100.00).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h4>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
   <% grand_total += total %>
-  <h4>Event Earnings: $<%= sprintf("%0.02f", total/100.00).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h4>
-</ul>
-<% end %>
-<h3>Fiscal Year Earnings: $<%= sprintf("%0.02f", grand_total/100.00).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+  <% end %>
+<tr>
+  <td colspan="2">
+    <h3>Fiscal Year Earnings: $<%= sprintf("%0.02f", grand_total/100.00).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+  </td>
+</tr>
+</table>
 
-<h1>Average # of Guests</h1>
+<h3>Average # of Guests</h3>
 
-<% guest_total = 0 %>
-<% event_count = 0 %>
-<% Event.all.each do |event| %>
-  <ul>
-    <li><%= event.name %> - <%= pluralize(event.guests.count, 'Guest') %></li>
-  </ul>
+<table>
+  <tr>
+    <th>Event</th>
+    <th># of Guests</th>
+  </tr>
+    <% guest_total = 0 %>
+    <% event_count = 0 %>
+    <% Event.all.each do |event| %>
+  <tr>
+    <td><%= event.name %></td>
+    <td><%= pluralize(event.guests.count, 'Guest') %></td>
+  </tr>
   <% guest_total += event.guests.count %>
   <% event_count += 1 %>
-<% end %>
-<h3>Average: <%= pluralize((guest_total/event_count), "Guest") %></h3>
+  <% end %>
+  <tr>
+    <td colspan="2">
+      <h4>Average: <%= pluralize((guest_total/event_count), "Guest") %></h4>
+    </td>
+  </tr>
+</table>

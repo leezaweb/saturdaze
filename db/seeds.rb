@@ -9,7 +9,7 @@ User.create(first_name: "Ryan", last_name: "Leeza", email: "admin@gmail.com", pa
   lastname = Faker::FamilyGuy.character.split(' ').last
 
   User.create(first_name: firstname,
-    last_name: lastname, email: "#{firstname}.#{lastname}@gmail.com",
+    last_name: lastname, email: "#{firstname.downcase}.#{lastname.downcase}@gmail.com",
     password:"password")
 
     Location.create(address:Faker::Address.street_address, name:Faker::StarWars.planet, description:Faker::Lorem.sentence(4))
