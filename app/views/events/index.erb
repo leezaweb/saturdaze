@@ -1,7 +1,8 @@
 <h1>Events</h1>
 <button><%= link_to "New Event", new_event_path %></button>
-<ul>
-  <% @events.each do |event| %>
+<div>
+<ul class="hosted"><h2>Your Events</h2>
+  <% current_user.events.where(host_id: current_user.id).each do |event| %>
   <li>
 
     <ul><h2><%= link_to event.name, event_path(event) %></h2>
@@ -9,7 +10,21 @@
       <li>Location: <%= event.location.name %></li>
       <li>Host: <%= event.host.fullname %></li>
     </ul>
-  <% end  %>
   </li>
+  <% end  %>
 
 </ul>
+<ul class="invited"><h2>You're Invited!</h2>
+  <% Event.all.select{|x| x.guest_ids.include?(current_user.id) }.each do |event| %>
+  <li>
+    <ul>
+      <h2><%= link_to event.name, event_path(event) %></h2>
+      <li>Description: <%= event.description %></li>
+      <li>Location: <%= event.location.name %></li>
+      <li>Host: <%= event.host.fullname %></li>
+    </ul>
+  </li>
+  <% end  %>
+
+</ul>
+</div>

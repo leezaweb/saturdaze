@@ -1,15 +1,65 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+.hosted,.invited{float:left;width:50%,margin:25px;vertical-align:top;}
+.admin_menu li{display:inline-block;width:18%}
+.user_menu li{display:inline-block;width:18%}
+body,html{width:100%;height:100%;margin:0; font-family: "Lucida Console", Monaco, monospace
+}
+main{width: 50%;margin: 0 auto;padding:350px 25px; background-color:white;}
+header{
+  position:fixed;
+  width:100%;
+  margin:0;
+}
+nav:first-of-type{
+  line-height:0;
+  padding:1px 0;
+  background-color:#000
+}
+nav:last-of-type ul{
+  margin:0;padding:0
+}
+nav:last-of-type{
+  box-shadow: 0px 0px 12px 2px #000000;
+}
+nav:last-of-type li{
+  font-size:24px;
+  background: linear-gradient(to bottom right, red, yellow);
+  display: table-cell;
+  height: 100%;
+  width: 25%;
+  padding: 12px;
+}
+nav:last-of-type li:nth-child(-n+4){
+
+  border-right:1px solid #000;
+}
+nav{margin:0;text-align: center;}
+nav a{color:white}
+input,textarea{font-size:18px}
+button,form.button_to{font-size:13px;display:inline-block}
+input[type='submit']{cursor:pointer}
+.banner > a{
+  font-size: 72px;
+  font-weight:bold;
+  color:white;
+  display:block;
+  text-align:center;
+}
+nav button{
+  padding:12px 24px;
+  }
+  button a{
+  color:#2cb5e9 !important;
+  font-weight:bold;
+  font-size:18px;
+}
+.banner{
+  background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  padding:24px 0 0;
+}
+a{text-decoration:none;}
+.errors{color:red}
+.field_with_errors{
+  background-color: red;
+  padding: 3px;
+  display: inline-block;
+}
