@@ -29,7 +29,7 @@ end
 
 20.times do |x|
   10.times do |y|
-    EventAmenity.create(event_id:y+1, amenity_id:x+1) if x%5 == 0
-    EventAmenity.create(event_id:y+1, amenity_id:(x-10).abs) if x%3 == 0
+    EventAmenity.create(event_id:y+1, amenity_id:x+1) if x%10 == 0
+    EventAmenity.create(event_id:y+1, amenity_id:(x-10).abs) if x%6 == 0
   end
 end
