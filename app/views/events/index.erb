@@ -14,6 +14,7 @@
   <li>
 
     <ul><h4><%= link_to event.name, event_path(event) %></h4>
+      <li>Date: <%= event.date.strftime('%B %e, %Y') %></li>
       <li>Description: <%= event.description %></li>
       <li>Location: <%= event.location.name %></li>
       <li>Host: <%= event.host.fullname %></li>
@@ -34,6 +35,7 @@
   <li>
     <ul>
       <h4><%= link_to event.name, event_path(event) %></h4>
+        <li>Date: <%= event.date.strftime('%B %e, %Y') %></li>
       <li>Description: <%= event.description %></li>
       <li>Location: <%= event.location.name %></li>
       <li>Host: <%= event.host.fullname %></li>

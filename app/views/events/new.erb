@@ -11,8 +11,11 @@
 <h2>Add an Event</h2>
   <%= f.label :name, "Event Name:" %>
   <%= f.text_field :name, {size:"48"} %><br><br>
-  <%= f.label :date, "Event Date:" %>
-  <%= radio_button_tag :date, :date%> April 16, 2018<br><br>
+  <%= f.label :date, "Choose a Saturday:" %>
+  <%= select_tag "event[date]", options_for_select(@dates) %>
+
+<br><br>
+
   <%= f.label :description, "Event Description:" %><br>
   <%= f.text_area :description,{rows: "9",cols: "60"} %><br><br>
 
@@ -28,7 +31,9 @@
     <button type="button">Add Guest to Guest List</button>
     <br>
     <div id="checked">
-
+      <%= f.collection_check_boxes :guest_ids, @event.guests, :id, :fullname, {} do |b|
+        b.label(style: "margin-right:50px;white-space:nowrap; display:inline-block;") { b.label + ": "+ b.check_box(checked:"checked")}
+      end %>
     </div>
     <br><br>
   <%= f.label :location_id, "Location:" %><br>
@@ -57,6 +62,7 @@
   var id = $("datalist option[value='" + name + "']:first").index() +1;
 
   $("input[list='guest_autocomplete']").val("");
+  $("datalist option[value='" + name + "']:first").remove();
 
   $("#checked").append('<label for=\"event_guest_ids_' + id + '\">' + name + '</label>: <input type=\"checkbox\" value=\"' + id + '\" checked=\"checked\" name=\"event[guest_ids][]\" id=\"event_guest_ids_' + id + '\">');
   });

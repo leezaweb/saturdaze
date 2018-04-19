@@ -11,7 +11,7 @@
 <h2>Edit Event</h2>
   <%= f.label :name, "Event Name:" %>
   <%= f.text_field :name, {size:"48"} %><br><br>
-  <%= f.label :date, "Event Date:" %>
+  <%= f.label :date, "Choose a Saturday:" %>
   <%= radio_button_tag :date, :date%> April 16, 2018<br><br>
   <%= f.label :description, "Event Description:" %><br>
   <%= f.text_area :description,{rows: "9",cols: "60"} %><br><br>
@@ -59,6 +59,7 @@
   var id = $("datalist option[value='" + name + "']:first").index() +1;
 
   $("input[list='guest_autocomplete']").val("");
+  $("datalist option[value='" + name + "']:first").remove();
 
   $("#checked").append('<label for=\"event_guest_ids_' + id + '\">' + name + '</label>: <input type=\"checkbox\" value=\"' + id + '\" checked=\"checked\" name=\"event[guest_ids][]\" id=\"event_guest_ids_' + id + '\">');
   });

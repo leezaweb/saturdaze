@@ -1,4 +1,4 @@
-<ul><h4><%= @event.name %></h4>
+<ul><h4><%= "#{@event.name}: #{@event.date.strftime('%B %e, %Y')}" %></h4>
   <li>Description: <%= @event.description %></li>
   <li>Location: <%= @event.location.name %></li>
   <li>Host: <%= @event.host.fullname %></li>

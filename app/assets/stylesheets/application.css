@@ -131,3 +131,6 @@ th {
     font-weight: bold;
     font-size: 18px;
 }
+form div:nth-of-type(odd) {
+    background-color: transparent;
+}

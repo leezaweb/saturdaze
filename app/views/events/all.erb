@@ -4,6 +4,7 @@
 <table>
   <tr>
     <th><%= params[:sort] != "name" ? (link_to 'name', sort: 'name') : "name"%></th>
+    <th><%= params[:sort] != "date" ? (link_to 'date', sort: 'date') : "date"%></th>
     <th><%= params[:sort] != "location" ? (link_to 'location', sort: 'location') : "location"%></th>
     <th><%= params[:sort] != "host" ? (link_to 'host', sort: 'host') : "host"%></th>
     <th><%= params[:sort] != "guest" ? (link_to 'guest count', sort: 'guest') : "guest count"%></th>
@@ -14,6 +15,7 @@
 
   <tr>
     <td><%= link_to event.name, event_path(event) %></td>
+    <td><%= event.date.strftime('%B %e, %Y') %></td>
     <td><%= event.location.name %></td>
     <td><%= event.host.first_name + " " + event.host.last_name%></td>
     <td><%= event.guests.count %></td>
