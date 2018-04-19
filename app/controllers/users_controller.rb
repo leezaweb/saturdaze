@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     if @user.valid?
+      UserMailer.signup_confirmation(@user).deliver #CHANGE
       session[:user_id] = @user.id
       redirect_to events_path
     else
