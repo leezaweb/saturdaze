@@ -1,5 +1,9 @@
-<h3>Sales Report</h3>
-<%= line_chart Event.joins(:rsvps).group(:event_id).count %>
+<h3>Performance Report</h3>
+<%#= line_chart Event.joins(:rsvps).group(:event_id).count %>
+<h5>Number of Guests/Event</h5>
+<%= column_chart Event.joins(:rsvps).group(:name).count %>
+<h5>Number of Events/Location</h5>
+<%= column_chart Location.joins(:events).group(:name).count %>
 <%#= chartkick for tomorrow: https://www.chartkick.com/  %>
 <table>
   <tr>
