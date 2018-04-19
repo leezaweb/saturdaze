@@ -8,6 +8,9 @@ class RsvpsController < ApplicationController
       redirect_to event_path(Rsvp.find(params[:id]).event_id)
     else
       rsvp.destroy
+
+      flash[:message] = "Successfully declined invitation."
+
       redirect_to '/'
     end
 

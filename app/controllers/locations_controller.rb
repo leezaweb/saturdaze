@@ -9,11 +9,14 @@ class LocationsController < ApplicationController
 
   def new
     @location = Location.new
+
   end
 
   def create
     @location = Location.create(location_params)
     if @location.valid?
+      flash[:message] = "Successfully created event."
+
       redirect_to location_path(@location)
     else
       render :new
@@ -23,14 +26,19 @@ class LocationsController < ApplicationController
   def update
     @location.update(location_params)
     if @location.valid?
-      redirect_to location_path
+      flash[:message] = "Successfully updated event."
+
+      redirect_to manage_locations_path
     else
       render :edit
     end
   end
 
   def destroy
+    flash[:message] = "Successfully deleted event."
+
     @location.destroy
+    redirect_to manage_locations_path
   end
 
   private

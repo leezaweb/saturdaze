@@ -12,6 +12,9 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:session][:email].downcase)
     if @user && @user.authenticate(params[:session][:password])
       log_in @user
+
+        flash[:message] = "Thanks for joining #{@user.first_name}."
+
       redirect_to events_path
     else
       render :new

@@ -14,6 +14,7 @@ class AmenitiesController < ApplicationController
   def create
     @amenity = Amenity.create(name: params[:amenity][:name], description: params[:amenity][:description], price_in_cents: dollars_to_cents(params[:amenity][:price_in_cents]))
     if @amenity.valid?
+      flash[:message] = "Successfully created event."
       redirect_to amenity_path(@amenity)
     else
       render :new
@@ -23,6 +24,8 @@ class AmenitiesController < ApplicationController
   def update
     @amenity.update(name: params[:amenity][:name], description: params[:amenity][:description], price_in_cents: dollars_to_cents(params[:amenity][:price_in_cents]))
     if @amenity.valid?
+      flash[:message] = "Successfully updated event."
+
       redirect_to amenity_path
     else
       render :edit
@@ -30,7 +33,10 @@ class AmenitiesController < ApplicationController
   end
 
   def destroy
+    flash[:message] = "Successfully deleted event."
+
     @amenity.destroy
+    redirect_to manage_amenitiess_path
   end
 
   private
