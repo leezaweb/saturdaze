@@ -1,15 +1,16 @@
-
+<h2>Manage Events</h2>
+<button><%= link_to "New Event", new_event_path %></button>
 
 <table>
   <tr>
-    <th>name</th>
-    <th>location</th>
-    <th>host</th>
-    <th>guest count</th>
-    <th>amenity count</th>
+    <th><%= params[:sort] != "name" ? (link_to 'name', sort: 'name') : "name"%></th>
+    <th><%= params[:sort] != "location" ? (link_to 'location', sort: 'location') : "location"%></th>
+    <th><%= params[:sort] != "host" ? (link_to 'host', sort: 'host') : "host"%></th>
+    <th><%= params[:sort] != "guest" ? (link_to 'guest count', sort: 'guest') : "guest count"%></th>
+    <th><%= params[:sort] != "amenity" ? (link_to 'amenity count', sort: 'amenity') : "amenity count"%></th>
     <th colspan="2"></th>
   </tr>
-  <% Event.all.each do |event|  %>
+  <% @events.each do |event|  %>
 
   <tr>
     <td><%= link_to event.name, event_path(event) %></td>

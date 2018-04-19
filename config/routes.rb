@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   resources :amenities
   resources :locations
   resources :events
-  resources :users
+  resources :users,except: [:index]
+  post '/users' => 'users#create'
   match '/add-guest', to: 'events#add_guest',via: [:get, :post]
 
   get '/login' => 'sessions#new'
@@ -20,6 +21,6 @@ Rails.application.routes.draw do
   get '/manage/events' => 'events#all'
   get '/manage/amenities' => 'amenities#all'
   get '/manage/locations' => 'locations#all'
-  get '/manage/users' => 'users#index'
+  get '/manage/users' => 'users#all'
 
 end

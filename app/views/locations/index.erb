@@ -1,4 +1,4 @@
-<h1>Locations</h1>
+<h2>Locations</h2>
 <% if current_user.email == "admin@gmail.com"  %>
   <button><%= link_to "New Location", new_location_path %></button>
 <% end %>
@@ -6,7 +6,7 @@
 <ul>
   <% @locations.each do |location| %>
   <li>
-    <ul><h2><%= link_to location.name, location_path(location) %></h2>
+    <ul><h4><%= link_to location.name, location_path(location) %></h4>
       <li><%= location.description %></li>
       <li><%= location.address %></li>
       <li><%= pluralize(location.events.count, 'Event')%>:<%= location.events.pluck(:name).to_sentence %></li>

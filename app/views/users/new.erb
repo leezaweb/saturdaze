@@ -1,7 +1,6 @@
-<div style="margin-top:-150px">
 
 <% if @user.errors.any? %>
-<ul class="errors">
+<ul class="errors" style="margin-top:-150px">
   <% @user.errors.full_messages.each do |msg|  %>
   <li>
     <%= msg %>
@@ -10,8 +9,8 @@
 </ul>
 <% end  %>
 
-<%= form_for @user do |f| %>
-<h1>Create Account</h1>
+<%= form_for @user, html: {style: "margin-top:-150px"}  do |f| %>
+<h2>Create Account</h2>
   First Name: <%= f.text_field :first_name %><br>
   Last Name: <%= f.text_field :last_name %><br>
   Email: <%= f.text_field :email %><br>
@@ -19,4 +18,3 @@
   Password Confirmation: <%= f.password_field :password_confirmation %><br>
   <%= f.submit "Create Account" %>
 <% end %>
-</div>

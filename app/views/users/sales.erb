@@ -1,4 +1,6 @@
 <h3>Sales Report</h3>
+<%= line_chart Event.joins(:rsvps).group(:event_id).count %>
+<%#= chartkick for tomorrow: https://www.chartkick.com/  %>
 <table>
   <tr>
     <th>Event</th>
@@ -8,7 +10,7 @@
   <% Event.all.each do |event|  %>
 
   <tr>
-    <td><h4><%= link_to event.name, event_path(event) %></h4></td>
+    <td><h5><%= link_to event.name, event_path(event) %></h5></td>
     <td>
       <table>
         <% total = 0 %>
@@ -21,7 +23,7 @@
         <% end %>
         <tr>
           <td colspan="2">
-          <h4>Event Earnings: $<%= sprintf("%0.02f", total/100.00).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h4>
+          <h5>Event Earnings: $<%= sprintf("%0.02f", total/100.00).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h5>
           </td>
         </tr>
 
@@ -32,12 +34,12 @@
   <% end %>
 <tr>
   <td colspan="2">
-    <h3>Fiscal Year Earnings: $<%= sprintf("%0.02f", grand_total/100.00).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h3>
+    <h4>Fiscal Year Earnings: $<%= sprintf("%0.02f", grand_total/100.00).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %></h4>
   </td>
 </tr>
 </table>
 
-<h3>Average # of Guests</h3>
+<h4>Average # of Guests</h4>
 
 <table>
   <tr>
@@ -56,7 +58,7 @@
   <% end %>
   <tr>
     <td colspan="2">
-      <h4>Average: <%= pluralize((guest_total/event_count), "Guest") %></h4>
+      <h5>Average: <%= pluralize((guest_total/event_count), "Guest") %></h5>
     </td>
   </tr>
 </table>

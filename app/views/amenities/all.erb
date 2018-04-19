@@ -1,9 +1,10 @@
-
+<h2>Manage Amenities</h2>
+<button><%= link_to "New Location", new_location_path %></button>
 
 <table>
   <tr>
     <th>name</th>
-    <th>hescription</th>
+    <th>description</th>
     <th>price</th>
     <th colspan="2"></th>
   </tr>
@@ -12,7 +13,7 @@
   <tr>
     <td><%= link_to amenity.name, amenity_path(amenity) %></td>
     <td><%= amenity.description %></td>
-    <td><%= amenity.price_change %></td>
+    <td>$<%= amenity.price_change %></td>
     <td><button><%= link_to 'Edit', edit_amenity_path(amenity) %></button></td>
     <td><button><%= link_to 'Delete', amenity, method: :delete, data: {confirm: "Are you sure?"} %></button></td>
   </tr>

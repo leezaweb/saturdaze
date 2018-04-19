@@ -1,29 +1,43 @@
-<h1>Events</h1>
+<h2>Events</h2>
 <button><%= link_to "New Event", new_event_path %></button>
 <div>
-<ul class="hosted"><h2>Your Events</h2>
-  <% current_user.events.where(host_id: current_user.id).each do |event| %>
+<ul class="hosted">
+  <% hosted_events = current_user.events.where(host_id: current_user.id)  %>
+  <% if hosted_events.none? %>
+  <p><em>You haven't planned any events.<em></p>
+
+  <% else %>
+  <h4>Your Events</h4>
+  <% hosted_events.each do |event| %>
   <li>
 
-    <ul><h2><%= link_to event.name, event_path(event) %></h2>
+    <ul><h4><%= link_to event.name, event_path(event) %></h4>
       <li>Description: <%= event.description %></li>
       <li>Location: <%= event.location.name %></li>
       <li>Host: <%= event.host.fullname %></li>
     </ul>
   </li>
   <% end  %>
+  <% end %>
 
 </ul>
-<ul class="invited"><h2>You're Invited!</h2>
-  <% Event.all.select{|x| x.guest_ids.include?(current_user.id) }.each do |event| %>
+<ul class="invited">
+  <% invited_events = Event.all.select{|x| x.guest_ids.include?(current_user.id) }  %>
+  <% if invited_events.none? %>
+  <p><em>You haven't been invited to any events.<em></p>
+
+  <% else  %>
+  <h4>You're Invited!</h4>
+  <% invited_events.select{|x| x.guest_ids.include?(current_user.id) }.each do |event| %>
   <li>
     <ul>
-      <h2><%= link_to event.name, event_path(event) %></h2>
+      <h4><%= link_to event.name, event_path(event) %></h4>
       <li>Description: <%= event.description %></li>
       <li>Location: <%= event.location.name %></li>
       <li>Host: <%= event.host.fullname %></li>
     </ul>
   </li>
+  <% end  %>
   <% end  %>
 
 </ul>
