@@ -2,6 +2,11 @@ class EventsController < ApplicationController
   before_action :require_login
   before_action :set_event, only: [:show,:edit,:update,:destroy]
 
+  def index
+    @activities = PublicActivity::Activity.all
+
+  end
+
   def all
     if params[:sort]
 
@@ -36,19 +41,21 @@ class EventsController < ApplicationController
     @event = Event.create(event_params)
 
     if @event.valid?
+      flash[:message] = "Successfully created event."
+
       redirect_to events_path
     else
       render :new
     end
   end
 
-  def edit
-  end
 
   def update
 
     @event.update(event_params)
     if @event.valid?
+
+      flash[:message] = "Successfully updated event."
       redirect_to event_path(@event)
     else
       render :edit
@@ -57,6 +64,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
+      flash[:message] = "Successfully deleted event."
     redirect_to manage_events_path
   end
 
