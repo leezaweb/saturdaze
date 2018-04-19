@@ -1,4 +1,4 @@
 <div class="">
-<%#= @activities.select{|x,y| x.key == "event.create"}  %>
+<%= @activities.select{|x,y| x.key == "event.create"}.last.inspect  %> CREATED!!
 
 </div>

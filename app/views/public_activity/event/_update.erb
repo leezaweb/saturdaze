@@ -1,3 +1,4 @@
 <div class="">
-<%#= @activities.select{|x,y| x.key == "event.update"}  %>
+<%= @activities.select{|x,y| x.key == "event.update"}.last.inspect  %> UPDATED!!
+
 </div>

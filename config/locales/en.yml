@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+
+  activity:
+  event:
+    create: 'Event has been created'
+    update: 'Event has been updated'
+    destroy: 'Event has been destroyed'
