@@ -19,6 +19,11 @@
 
 
 <% if @event.host_id == current_user.id  %>
+<% rsvps = @event.rsvps.select{|x|x.is_commited == true} %>
+<p><%= pluralize(rsvps.count, 'RSVP')%>:
+<%= rsvps.pluck(:guest_id).map{|x|User.find(x).first_name}.to_sentence %>
+</p>
+
   <button><%= link_to 'Edit', edit_event_path(@event) %></button>
   <button><%= link_to 'Delete', @event, method: :delete, data: {confirm: "Are you sure?"} %></button>
 <% end %>

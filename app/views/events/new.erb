@@ -62,7 +62,7 @@
   var id = $("datalist option[value='" + name + "']:first").index() +1;
 
   $("input[list='guest_autocomplete']").val("");
-  $("datalist option[value='" + name + "']:first").remove();
+  $("datalist option[value='" + name + "']:first").val("");
 
   $("#checked").append('<label for=\"event_guest_ids_' + id + '\">' + name + '</label>: <input type=\"checkbox\" value=\"' + id + '\" checked=\"checked\" name=\"event[guest_ids][]\" id=\"event_guest_ids_' + id + '\">');
   });
