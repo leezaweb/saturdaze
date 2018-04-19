@@ -1,4 +1,6 @@
 <h3>Sales Report</h3>
+<%= line_chart Event.joins(:rsvps).group(:event_id).count %>
+<%#= chartkick for tomorrow: https://www.chartkick.com/  %>
 <table>
   <tr>
     <th>Event</th>
