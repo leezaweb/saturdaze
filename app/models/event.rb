@@ -8,9 +8,6 @@ class Event < ApplicationRecord
 
   validates :name, :description, :location_id, :date, :host_id, presence: true
 
-  include PublicActivity::Model
-  tracked
-
   def self.sort(order)
      events ||= Event.all
 

@@ -4,7 +4,6 @@ class AmenitiesController < ApplicationController
 
   def index
     @amenities = Amenity.all
-
   end
 
   def new

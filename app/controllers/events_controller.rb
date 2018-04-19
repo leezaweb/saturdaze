@@ -4,7 +4,25 @@ class EventsController < ApplicationController
   before_action :dates, only: [:edit,:new,:create]
 
   def index
-    @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Event", trackable_id: current_user).all
+
+  end
+
+  def notice
+    latest_invite = Rsvp.where(guest_id: current_user.id).order(created_at: :desc).limit(1)[0]
+    if latest_invite
+      invite_event = Event.find(latest_invite.event_id)
+      flash[:message] = "#{invite_event.host.first_name} invited you to an event: #{invite_event.name}"
+      redirect_to events_path
+    end
+
+      latest_event = Event.joins(:rsvps).where(host_id: current_user.id).order(created_at: :desc).limit(1)[0]
+      latest_rsvp = Rsvp.find_by(event_id: latest_event.id, is_commited:true)
+    if latest_event && latest_rsvp
+      hosted_guest = User.find(latest_rsvp.guest_id)
+      hosted_event = Event.find(latest_rsvp.event_id)
+      flash[:message] = "#{hosted_guest.first_name} RSVPed to your event: #{hosted_event.name}"
+      redirect_to events_path
+    end
   end
 
   def all
