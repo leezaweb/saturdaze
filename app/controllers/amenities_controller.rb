@@ -54,7 +54,6 @@ class AmenitiesController < ApplicationController
   end
 
   def amenity_params
-    puts params
     params.require(:amenity).permit(Amenity.column_names)
   end
 end

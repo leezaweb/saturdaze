@@ -4,12 +4,10 @@ class LocationsController < ApplicationController
 
   def index
     @locations = Location.all
-
   end
 
   def new
     @location = Location.new
-
   end
 
   def create
@@ -36,7 +34,6 @@ class LocationsController < ApplicationController
 
   def destroy
     flash[:message] = "Successfully deleted event."
-
     @location.destroy
     redirect_to manage_locations_path
   end

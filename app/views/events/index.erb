@@ -18,6 +18,7 @@
       <li>Description: <%= event.description %></li>
       <li>Location: <%= event.location.name %></li>
       <li>Host: <%= event.host.fullname %></li>
+      <li><%= pluralize(event.rsvps.select{|x|x.is_commited == true}.count, 'RSVP')%></li>
     </ul>
   </li>
   <% end  %>
