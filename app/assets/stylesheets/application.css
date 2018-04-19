@@ -10,7 +10,8 @@ header{
   width:100%;
   margin:0;
   box-shadow: 0px 0px 24px 3px #000000;
-  background-color:#000
+  background-color:#000;
+  z-index:1
 }
 nav:first-of-type{
   padding:1px 0;
