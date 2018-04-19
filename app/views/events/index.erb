@@ -1,7 +1,6 @@
 <h2>Events</h2>
 <%= render_activities(@activities) %>
-
-
+  <h3><%= "Hi #{current_user.first_name}. You are user #{current_user.id} " %></h3>
 <button><%= link_to "New Event", new_event_path %></button>
 <div>
 <ul class="hosted">

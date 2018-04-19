@@ -11,4 +11,5 @@ class Event < ApplicationRecord
   include PublicActivity::Model
   tracked
 
+
 end

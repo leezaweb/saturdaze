@@ -3,8 +3,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show,:edit,:update,:destroy]
 
   def index
-    @activities = PublicActivity::Activity.all
-
+    @activities = PublicActivity::Activity.order("created_at DESC").where(trackable_type: "Event", trackable_id: 35).all
   end
 
   def all
