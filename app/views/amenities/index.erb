@@ -1,11 +1,11 @@
-<h1>Amenities</h1>
+<h2>Amenities</h2>
 <% if current_user.email == "admin@gmail.com"  %>
   <button><%= link_to "New Amenity", new_amenity_path %></button>
 <% end  %>
 <ul>
   <% @amenities.each do |amenity| %>
   <li>
-    <ul><h2><%= link_to amenity.name, amenity_path(amenity) %> $<%= amenity.price_change %></h2>
+    <ul><h4><%= link_to amenity.name, amenity_path(amenity) %> $<%= amenity.price_change %></h4>
       <li>Description: <%= amenity.description %></li>
     </ul>
   <% end  %>
