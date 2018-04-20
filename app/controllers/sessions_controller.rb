@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  
+  after_action :clear_notice, only: :destroy
   def new
   end
 
