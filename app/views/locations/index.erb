@@ -1,17 +1,30 @@
 <h2>Locations</h2>
-<% if current_user.email == "admin@gmail.com"  %>
-  <button><%= link_to "New Location", new_location_path %></button>
-<% end %>
 
+<% if current_user.email == "admin@gmail.com"  %>
+  <%= link_to "New Location", new_location_path , class: "waves-effect waves-light btn" %>
+<% end %>
+<div class="row">
+
+<% @locations.each do |location| %>
+<div class="col s12 m7">
+
+<div class="card">
+  <div class="card-image">
+  </div>
+  <div class="card-content">
+    <h4><%= link_to location.name, location_path(location) %></h4>
 <ul>
-  <% @locations.each do |location| %>
   <li>
-    <ul><h4><%= link_to location.name, location_path(location) %></h4>
+    <ul>
       <li><%= location.description %></li>
       <li><%= location.address %></li>
       <li><%= pluralize(location.events.count, 'Event')%>:<%= location.events.pluck(:name).to_sentence %></li>
     </ul>
-  <% end  %>
   </li>
 
 </ul>
+</div>
+</div>
+</div>
+<% end  %>
+</div>

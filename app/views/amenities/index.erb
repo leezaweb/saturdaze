@@ -1,14 +1,30 @@
 <h2>Amenities</h2>
+
 <% if current_user.email == "admin@gmail.com"  %>
-  <button><%= link_to "New Amenity", new_amenity_path %></button>
-<% end  %>
+  <%= link_to "New Amenity", new_amenity_path , class: "waves-effect waves-light btn" %>
+<% end %>
+<div class="row">
+
+<% @amenities.each do |amenity| %>
+<div class="col s12 m7">
+
+<div class="card">
+  <div class="card-image">
+  </div>
+  <div class="card-content">
+    <h4><%= link_to amenity.name, amenity_path(amenity) %></h4>
 <ul>
-  <% @amenities.each do |amenity| %>
   <li>
-    <ul><h4><%= link_to amenity.name, amenity_path(amenity) %> $<%= amenity.price_change %></h4>
-      <li>Description: <%= amenity.description %></li>
+    <ul>
+      <li><%= amenity.description %></li>
+      <li>$<%= amenity.price_change %></li>
+      <li><%= pluralize(amenity.events.count, 'Event')%>:<%= amenity.events.pluck(:name).to_sentence %></li>
     </ul>
-  <% end  %>
   </li>
 
 </ul>
+</div>
+</div>
+</div>
+<% end  %>
+</div>

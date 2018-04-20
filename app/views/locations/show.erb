@@ -1,11 +1,25 @@
-<h2><%= @location.name %></h2>
-
 <ul>
-  <li>Description: <%= @location.description %></li>
-  <li><%= pluralize(@location.events.count, 'Event')%>:</li>
-  <ul>
+  <div class="card">
+    <div class="card-image">
+    </div>
+    <div class="card-content"><ul>
+      <h2><%= @location.name %></h2>
+      <li>Description: <%= @location.description %></li>
+    <li><%= pluralize(@location.events.count, 'Event')%>:</li></ul>
+
+  </div>
+  <div class="card-action">
+    <ul>
     <% @location.events.each do |event| %>
-      <li><%= event.name %></li>
+      <li><%= link_to event.name, event_path(event) %></li>
     <% end %>
   </ul>
+</div>
+<% if current_user.email == "admin@gmail.com"  %>
+<div class="card-action">
+<%= link_to 'Edit', edit_location_path(@location) , class: "waves-effect waves-light btn" %>
+</div>
+<% end  %>
+</div>
+
 </ul>
