@@ -58,7 +58,10 @@
   <%= f.collection_check_boxes :amenity_ids, Amenity.all, :id, :name, {} do |b|
     b.label(style: "color:#000;margin-right:50px;white-space:nowrap; display:inline-block;") { b.label + ": "+ b.check_box}
   end  %>
+<<<<<<< HEAD
 
+=======
+>>>>>>> ffa46046d33482964a67f799fc3cd3819fdea118
   <%= f.hidden_field :host_id, value: current_user.id %><br><br>
 
   <%= f.submit value="Create Event", {class: "btn"}%>
