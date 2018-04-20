@@ -136,7 +136,7 @@ textarea,textarea:focus, select, select:focus{border:none;outline:none;padding-t
     display: inline-block;
     height: 100%;
 }
-.nav-content li:nth-child(-n+4) a{    font-size: 2.2em}
+.nav-content li:nth-child(-n+4) a{    font-size: 2.1em}
 nav .brand-logo{
   font-size:5em;
     padding: 18px 36px 0;}
@@ -165,11 +165,6 @@ label{color:#9e9e9e}
   }
   label label {color:#000}
 
-  .input-field>label:not(.label-icon) {
-<<<<<<< HEAD
-    transform: translateY(-14px) scale(0.8);
-  }
-=======
+  .edit .input-field>label:not(.label-icon) {
       transform: translateY(-14px) scale(0.8);
     }
->>>>>>> ffa46046d33482964a67f799fc3cd3819fdea118

@@ -35,7 +35,7 @@ class AmenitiesController < ApplicationController
     flash[:message] = "Successfully deleted event."
 
     @amenity.destroy
-    redirect_to manage_amenitiess_path
+    redirect_to manage_amenities_path
   end
 
   private
