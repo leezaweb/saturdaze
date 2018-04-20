@@ -47,6 +47,10 @@ class EventsController < ApplicationController
     end
   end
 
+  def edit
+    @dates_plus = @dates.unshift(@event.date.strftime('%B %e, %Y'))
+  end
+
   def update
     @event.update(event_params)
     if @event.valid?

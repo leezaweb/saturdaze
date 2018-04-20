@@ -12,7 +12,7 @@
   <%= f.label :name, "Event Name:" %>
   <%= f.text_field :name, {size:"48"} %><br><br>
   <%= f.label :date, "Choose a Saturday:" %>
-  <%= f.select :date, options_for_select(@dates) %>
+  <%= f.select :date, @dates_plus %>
 
 <br><br>
 
