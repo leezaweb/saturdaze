@@ -1,11 +1,12 @@
 <ul><h4><%= "#{@event.name}: #{@event.date.strftime('%B %e, %Y')}" %></h4>
   <li>Description: <%= @event.description %></li>
   <li>Location: <%= @event.location.name %></li>
-  <li>Host: <%= @event.host.fullname %></li>
   <li>Amenities: <%= @event.amenities.pluck(:name).to_sentence %></li>
   <li><%= pluralize(@event.guests.count, 'Guest')%>: <%= @event.guests.map {|guest| guest.fullname}.to_sentence %></li>
 
 <% if @event.guest_ids.include?(current_user.id)  %>
+<li>Host: <%= @event.host.fullname %></li>
+
   <% rsvp = Rsvp.find_by(event_id:@event.id, guest_id:current_user.id)  %>
   <% if rsvp %>
     <% if rsvp.is_commited.nil? || rsvp.is_commited == false %>
@@ -20,8 +21,8 @@
 
 <% if @event.host_id == current_user.id  %>
 <% rsvps = @event.rsvps.select{|x|x.is_commited == true} %>
-<p><%= pluralize(rsvps.count, 'RSVP')%>:
-<%= rsvps.pluck(:guest_id).map{|x|User.find(x).first_name}.to_sentence %>
+<% punctuate = lambda{|x|": #{x}"}%>
+<p><%= pluralize(rsvps.count, 'RSVP')%><%= punctuate.call(rsvps.pluck(:guest_id).map{|x|User.find(x).first_name}.to_sentence) if rsvps.any? %>
 </p>
 
   <button><%= link_to 'Edit', edit_event_path(@event) %></button>

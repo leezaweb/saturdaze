@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:session][:email].downcase)
     if @user && @user.authenticate(params[:session][:password])
       log_in @user
-      redirect_to events_path
+      redirect_to root_path
     else
       flash[:message] = "Invalid User."
       redirect_to login_path

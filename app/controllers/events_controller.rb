@@ -4,29 +4,33 @@ class EventsController < ApplicationController
   before_action :dates, only: [:edit,:new,:create]
 
   def index
-
+    @greeting = greeting
   end
 
   def notice
-    latest_invite = Rsvp.where(guest_id: current_user.id).order(created_at: :desc).limit(1)[0]
-    if latest_invite
-      invite_event = Event.find(latest_invite.event_id)
-      flash[:message] = "#{invite_event.host.first_name} invited you to an event: #{invite_event.name}"
-      redirect_to events_path
+    latest_invite = Rsvp.where(is_commited:nil, guest_id: current_user.id).order(created_at: :desc)
+    invite_event = latest_invite.map {|x| Event.find_by(id:x.event_id)}.compact
+    flash[:message] = ""
+    if invite_event.any?
+      invite_event.each do |x|
+        flash[:message] << "#{x.host.first_name} invited you to an event: #{x.name}<br>"
+      end
     end
 
-      latest_event = Event.joins(:rsvps).where(host_id: current_user.id).order(created_at: :desc).limit(1)[0]
-      latest_rsvp = Rsvp.find_by(event_id: latest_event.id, is_commited:true)
-    if latest_event && latest_rsvp
-      hosted_guest = User.find(latest_rsvp.guest_id)
-      hosted_event = Event.find(latest_rsvp.event_id)
-      flash[:message] = "#{hosted_guest.first_name} RSVPed to your event: #{hosted_event.name}"
-      redirect_to events_path
+    latest_event = Event.where(host_id: current_user.id).order(created_at: :desc)
+    latest_rsvp = latest_event.map{|x|Rsvp.find_by(event_id: x.id, is_commited:true)}.compact
+    if latest_rsvp.any?
+      latest_rsvp.each do |x|
+        hosted_guest = User.find(x.guest_id)
+        hosted_event = Event.find(x.event_id)
+        flash[:message] << "#{hosted_guest.first_name} RSVPed to your event: #{hosted_event.name}<br>"
+      end
     end
+    redirect_to events_path
   end
 
   def all
-    @events = Event.sort(params[:sort]) if params[:sort]
+    params[:sort] ? @events = Event.sort(params[:sort]) : @events = Event.all
   end
 
   def new
@@ -72,6 +76,20 @@ class EventsController < ApplicationController
   def event_params
     puts params
     params.require(:event).permit(Event.column_names, guest_ids:[], amenity_ids:[])
+  end
+
+  def greeting
+    time = Time.now.hour
+    case time
+      when 0..12
+         "Good morning"
+      when 12..16
+         "Good afternoon"
+      when 16..21
+         "Good evening"
+      when 21..24
+         "Good night"
+    end
   end
 
   def dates
