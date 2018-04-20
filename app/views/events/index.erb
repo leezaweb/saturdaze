@@ -1,6 +1,6 @@
 <h2>Events</h2>
   <h3><%= "#{@greeting}, #{current_user.first_name}." %></h3>
-<button><%= link_to "New Event", new_event_path %></button>
+<%= link_to "New Event", new_event_path , class: "waves-effect waves-light btn pulse" %>
 <div>
 <ul class="hosted">
   <% hosted_events = current_user.events.where(host_id: current_user.id).order(:date)  %>
@@ -8,17 +8,24 @@
   <p><em>You haven't planned any events.<em></p>
 
   <% else %>
-  <h4>Your Events</h4>
+  <h4  class="card-panel teal lighten-2" style="color:white">Your Events</h4>
   <% hosted_events.each do |event| %>
-  <li>
+  <div class="card horizontal">
 
+  <div class="card-stacked">
+         <div class="card-content">
     <ul><h4><%= link_to event.name, event_path(event) %></h4>
       <li>Date: <%= event.date.strftime('%B %e, %Y') %></li>
       <li>Description: <%= event.description %></li>
       <li>Location: <%= event.location.name %></li>
-      <li><%= pluralize(event.rsvps.select{|x|x.is_commited == true}.count, 'RSVP')%></li>
-    </ul>
-  </li>
+      </ul>
+    </div>
+      <div class="card-action">
+
+      <p><%= pluralize(event.rsvps.select{|x|x.is_commited == true}.count, 'RSVP')%></p>
+</div>
+</div>
+</div>
   <% end  %>
   <% end %>
 
@@ -29,17 +36,24 @@
   <p><em>You haven't been invited to any events.<em></p>
 
   <% else  %>
-  <h4>You're Invited!</h4>
+  <h4  class="card-panel teal lighten-2" style="color:white">You're Invited!</h4>
   <% invited_events.select{|x| x.guest_ids.include?(current_user.id) }.each do |event| %>
-  <li>
+  <div class="card horizontal">
+
+  <div class="card-stacked">
+         <div class="card-content">
     <ul>
       <h4><%= link_to event.name, event_path(event) %></h4>
         <li>Date: <%= event.date.strftime('%B %e, %Y') %></li>
       <li>Description: <%= event.description %></li>
       <li>Location: <%= event.location.name %></li>
-      <li>Host: <%= event.host.fullname %></li>
     </ul>
-  </li>
+  </div>
+    <div class="card-action">
+      <p>Host: <%= event.host.fullname %></p>
+</div>
+</div>
+</div>
   <% end  %>
   <% end  %>
 

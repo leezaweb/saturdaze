@@ -1,31 +1,45 @@
-<ul><h4><%= "#{@event.name}: #{@event.date.strftime('%B %e, %Y')}" %></h4>
+<ul><h4 class="card-panel teal lighten-2" style="color:white"><%= "#{@event.name}: #{@event.date.strftime('%B %e, %Y')}" %></h4>
+  <div class="card horizontal">
+
+  <div class="card-stacked">
+         <div class="card-content">
   <li>Description: <%= @event.description %></li>
   <li>Location: <%= @event.location.name %></li>
   <li>Amenities: <%= @event.amenities.pluck(:name).to_sentence %></li>
   <li><%= pluralize(@event.guests.count, 'Guest')%>: <%= @event.guests.map {|guest| guest.fullname}.to_sentence %></li>
+</div>
 
 <% if @event.guest_ids.include?(current_user.id)  %>
+<div class="card-action">
+
 <li>Host: <%= @event.host.fullname %></li>
 
   <% rsvp = Rsvp.find_by(event_id:@event.id, guest_id:current_user.id)  %>
   <% if rsvp %>
     <% if rsvp.is_commited.nil? || rsvp.is_commited == false %>
-      <button><%= link_to 'RSVP', rsvp_path(rsvp), method: :put %></button>
+      <%= link_to 'RSVP', rsvp_path(rsvp), method: :put , class: "waves-effect waves-light btn" %>
     <% else %>
-      <button><%= link_to 'Cancel RSVP', rsvp_path(rsvp), method: :put %></button>
+      <%= link_to 'Cancel RSVP', rsvp_path(rsvp), method: :put , class: "waves-effect waves-light btn" %>
     <% end %>
   <% end %>
+</div>
 <% end %>
 
 
 
 <% if @event.host_id == current_user.id  %>
+<div class="card-action">
+
 <% rsvps = @event.rsvps.select{|x|x.is_commited == true} %>
 <% punctuate = lambda{|x|": #{x}"}%>
 <p><%= pluralize(rsvps.count, 'RSVP')%><%= punctuate.call(rsvps.pluck(:guest_id).map{|x|User.find(x).first_name}.to_sentence) if rsvps.any? %>
 </p>
 
-  <button><%= link_to 'Edit', edit_event_path(@event) %></button>
-  <button><%= link_to 'Delete', @event, method: :delete, data: {confirm: "Are you sure?"} %></button>
+  <%= link_to 'Edit', edit_event_path(@event) , class: "waves-effect waves-light btn" %>
+  <%= link_to 'Delete', @event, method: :delete, data: {confirm: "Are you sure?"} , class: "waves-effect waves-light btn" %>
+</div>
 <% end %>
+
+</div>
+</div>
 </ul>

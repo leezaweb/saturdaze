@@ -1,7 +1,7 @@
 <h2>Manage Amenities</h2>
-<button><%= link_to "New Location", new_location_path %></button>
+<%= link_to "New Amenity", new_amenity_path , class: "waves-effect waves-light btn" %>
 
-<table>
+<table class="responsive-table">
   <tr>
     <th>name</th>
     <th>description</th>
@@ -14,8 +14,8 @@
     <td><%= link_to amenity.name, amenity_path(amenity) %></td>
     <td><%= amenity.description %></td>
     <td>$<%= amenity.price_change %></td>
-    <td><button><%= link_to 'Edit', edit_amenity_path(amenity) %></button></td>
-    <td><button><%= link_to 'Delete', amenity, method: :delete, data: {confirm: "Are you sure?"} %></button></td>
+    <td><%= link_to 'Edit', edit_amenity_path(amenity) , class: "waves-effect waves-light btn" %></td>
+    <td><%= link_to 'Delete', amenity, method: :delete, data: {confirm: "Are you sure?"} , class: "waves-effect waves-light btn" %></td>
   </tr>
   <% end %>
 
