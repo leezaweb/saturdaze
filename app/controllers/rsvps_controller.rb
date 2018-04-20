@@ -1,4 +1,5 @@
 class RsvpsController < ApplicationController
+
   def update
     rsvp = Rsvp.find(params[:id])
     if rsvp.is_commited == false || rsvp.is_commited.nil?

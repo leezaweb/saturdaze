@@ -1,7 +1,7 @@
 <h2>Manage Events</h2>
-<button><%= link_to "New Event", new_event_path %></button>
+<%= link_to "New Event", new_event_path , class: "waves-effect waves-light btn" %>
 
-<table>
+<table class="responsive-table">
   <tr>
     <th><%= params[:sort] != "name" ? (link_to 'name', sort: 'name') : "name"%></th>
     <th><%= params[:sort] != "date" ? (link_to 'date', sort: 'date') : "date"%></th>
@@ -20,8 +20,8 @@
     <td><%= event.host.first_name + " " + event.host.last_name%></td>
     <td><%= event.guests.count %></td>
     <td><%= event.amenities.count %></td>
-    <td><button><%= link_to 'Edit', edit_event_path(event) %></button></td>
-    <td><button><%= link_to 'Delete', event, method: :delete, data: {confirm: "Are you sure?"} %></button></td>
+    <td><%= link_to 'Edit', edit_event_path(event), class: "waves-effect waves-light btn" , class: "waves-effect waves-light btn" %></td>
+    <td><%= link_to 'Delete', event, method: :delete, data: {confirm: "Are you sure?"} , class: "waves-effect waves-light btn" %></td>
   </tr>
   <% end %>
 

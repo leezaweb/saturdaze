@@ -5,7 +5,7 @@
 <h5>Number of Events/Location</h5>
 <%= pie_chart Location.joins(:events).group(:name).count %>
 <%#= chartkick for tomorrow: https://www.chartkick.com/  %>
-<table>
+<table class="responsive-table">
   <tr>
     <th>Event</th>
     <th>Amenities</th>
@@ -16,7 +16,7 @@
   <tr>
     <td><h5><%= link_to event.name, event_path(event) %></h5></td>
     <td>
-      <table>
+      <table class="responsive-table">
         <% total = 0 %>
         <% event.amenities.each do |amenity| %>
         <tr>
@@ -45,7 +45,7 @@
 
 <h4>Average # of Guests</h4>
 
-<table>
+<table class="responsive-table">
   <tr>
     <th>Event</th>
     <th># of Guests</th>
