@@ -1,10 +1,9 @@
 <h2>Events</h2>
-<%= render_activities(@activities) %>
-  <h3><%= "Hi #{current_user.first_name}. You are user #{current_user.id} " %></h3>
+  <h3><%= "#{@greeting}, #{current_user.first_name}." %></h3>
 <button><%= link_to "New Event", new_event_path %></button>
 <div>
 <ul class="hosted">
-  <% hosted_events = current_user.events.where(host_id: current_user.id)  %>
+  <% hosted_events = current_user.events.where(host_id: current_user.id).order(:date)  %>
   <% if hosted_events.none? %>
   <p><em>You haven't planned any events.<em></p>
 
@@ -17,7 +16,7 @@
       <li>Date: <%= event.date.strftime('%B %e, %Y') %></li>
       <li>Description: <%= event.description %></li>
       <li>Location: <%= event.location.name %></li>
-      <li>Host: <%= event.host.fullname %></li>
+      <li><%= pluralize(event.rsvps.select{|x|x.is_commited == true}.count, 'RSVP')%></li>
     </ul>
   </li>
   <% end  %>
@@ -25,7 +24,7 @@
 
 </ul>
 <ul class="invited">
-  <% invited_events = Event.all.select{|x| x.guest_ids.include?(current_user.id) }  %>
+  <% invited_events = Event.all.order(:date).select{|x| x.guest_ids.include?(current_user.id) }  %>
   <% if invited_events.none? %>
   <p><em>You haven't been invited to any events.<em></p>
 

@@ -1,10 +1,5 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show,:edit,:update,:destroy]
-  helper_method :current_user
-
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
-  end
 
   def all
     @users = User.all
@@ -18,6 +13,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.valid?
       session[:user_id] = @user.id
+      flash[:message] = "Welcome to Saturdaze. Thanks for joining!"
       redirect_to events_path
     else
       render :new

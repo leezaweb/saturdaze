@@ -4,7 +4,6 @@ class AmenitiesController < ApplicationController
 
   def index
     @amenities = Amenity.all
-
   end
 
   def new
@@ -54,7 +53,6 @@ class AmenitiesController < ApplicationController
   end
 
   def amenity_params
-    puts params
     params.require(:amenity).permit(Amenity.column_names)
   end
 end

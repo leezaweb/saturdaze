@@ -12,7 +12,7 @@
   <%= f.label :name, "Event Name:" %>
   <%= f.text_field :name, {size:"48"} %><br><br>
   <%= f.label :date, "Choose a Saturday:" %>
-  <%= select_tag "event[date]", options_for_select(@dates) %>
+  <%= f.select :date, options_for_select(@dates) %>
 
 <br><br>
 
@@ -49,22 +49,24 @@
   <%= f.submit %>
 
 
-  <%= javascript_tag do %>
-  $(document).ready(function() {
-    $("body").css("background","linear-gradient(to bottom, #fff 0%,  #fff 50%, #aaa 100%)");
-  });
+  <script type="text/javascript">
+  $("datalist option").eq(<%= current_user.id - 1 %>).val("!!!!");
 
   $("button").click(function(event){
   event.preventDefault();
+
+  // var name = $("input[list='guest_autocomplete']").val();
+  // var user_name = $("datalist option[value='" + name + "']:first");
+  // var user = <%#= User.find_by(first_name:user_name.split(" ")[0],first_name:user_name.split(" ")[1]).id %>;
 
   var name = $("input[list='guest_autocomplete']").val();
 
   var id = $("datalist option[value='" + name + "']:first").index() +1;
 
   $("input[list='guest_autocomplete']").val("");
-  $("datalist option[value='" + name + "']:first").remove();
+  $("datalist option[value='" + name + "']:first").val("");
 
-  $("#checked").append('<label for=\"event_guest_ids_' + id + '\">' + name + '</label>: <input type=\"checkbox\" value=\"' + id + '\" checked=\"checked\" name=\"event[guest_ids][]\" id=\"event_guest_ids_' + id + '\">');
+  $("#checked").append('<div style=\"margin-right:50px;white-space:nowrap; display:inline-block"><label for=\"event_guest_ids_' + id + '\">' + name + '</label>: <input type=\"checkbox\" value=\"' + id + '\" checked=\"checked\" name=\"event[guest_ids][]\" id=\"event_guest_ids_' + id + '\">');
   });
-  <%end  %>
+</script>
 <% end %>
