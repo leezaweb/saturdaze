@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.valid?
       session[:user_id] = @user.id
-      flash[:message] = "Thanks for joining!"
+      flash[:message] = "Welcome to Saturdaze. Thanks for joining!"
       redirect_to events_path
     else
       render :new
