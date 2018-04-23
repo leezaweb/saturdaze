@@ -5,11 +5,12 @@
     <div class="card-content"><ul>
       <h2><%= @location.name %></h2>
       <li>Description: <%= @location.description %></li>
-    <li><%= pluralize(@location.events.count, 'Event')%>:</li></ul>
+  </ul>
 
   </div>
   <div class="card-action">
     <ul>
+      <li><%= pluralize(@location.events.count, 'Event')%>:</li>
     <% @location.events.each do |event| %>
       <li><%= link_to event.name, event_path(event) %></li>
     <% end %>

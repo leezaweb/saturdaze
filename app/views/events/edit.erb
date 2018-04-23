@@ -19,21 +19,21 @@
 </div>
 <div class="input-field inline">
 
-  <%= f.label :date, "Choose a Saturday:" %>
+  <%= f.label :date, "Choose a Saturday:", style:"transform: translateY(14px);"  %>
   <%= f.select :date, @dates_plus, {:prompt => false}, {style: "margin-left: 9em;font-size:1.2em"} %>
 </div>
 
 <br><br>
 <div class="input-field">
 
-  <%= f.text_area :description,{rows: "9",cols: "60"} %><br><br>
+  <%= f.text_area :description,{rows: "9",cols: "60", class:"materialize-textarea"} %><br><br>
   <%= f.label :description, "Event Description:" %><br>
 </div>
 
 <label for="icon_prefix">Event Guests:</label>
 <div class="input-field inline">
   <i class="material-icons prefix">child_care</i>
-  <input id="icon_prefix" list="guest_autocomplete" size="30" class="autocomplete" style="    padding-left: 1em;">
+  <input list="guest_autocomplete" size="30" class="autocomplete" style="padding-left: 1em;">
     <datalist id="guest_autocomplete">
       <% User.all.each do |guest| %>
         <option value="<%= guest.fullname %>">
@@ -46,26 +46,30 @@
     <br>
 
     <div id="checked">
-      <%= f.collection_check_boxes :guest_ids, @event.guests, :id, :fullname, {} do |b|
-        b.label(style: "color:#000;margin-right:50px;white-space:nowrap; display:inline-block;") { b.label + ": "+ b.check_box(checked:"checked")}
-      end %>
+      <%= f.collection_check_boxes :guest_ids, @event.guests, :id, :fullname do |b| %>
+      <%=  b.label(style: "color:#000;margin-right:50px;white-space:nowrap; display:inline-block;") do %>
+       <%= b.label + ": "+ b.check_box(checked:"checked") %>
+       <span></span>
+     <% end %>
+   <% end %>
     </div>
     <br><br>
   <div class="input-field inline">
   <%= f.collection_select :location_id, Location.all, :id, :name, {:prompt => false}, {style: "margin-left: 6em;font-size:1.2em"} %>
-  <%= f.label :location_id, "Location:" %><br>
+  <%= f.label :location_id, "Location:", style:"transform: translateY(14px);" %><br>
 </div>
 <br>
 
-
 <%= f.label :amenities, "Choose Amenities:" %><br>
-  <%= f.collection_check_boxes :amenity_ids, Amenity.all, :id, :name, {} do |b|
-    b.label(style: "color:#000;margin-right:50px;white-space:nowrap; display:inline-block;") { b.label + ": "+ b.check_box}
-  end  %>
+  <%= f.collection_check_boxes :amenity_ids, Amenity.all, :id, :name do |b| %>
+    <%= b.label(style: "color:#000;margin-right:50px;white-space:nowrap; display:inline-block;") do %>
+     <%=  b.label + ": "+ b.check_box %>
+     <span></span>
+    <% end %>
+    <% end  %>
+<br><br>
 
-  <%= f.hidden_field :host_id, value: current_user.id %><br><br>
-
-  <%= f.submit value="Create Event", {class: "btn"}%>
+  <%= f.submit value="Edit Event", {class: "btn"}%>
 
 
   <script type="text/javascript">
@@ -85,7 +89,7 @@
   $("input[list='guest_autocomplete']").val("");
   $("datalist option[value='" + name + "']:first").val("");
 
-  $("#checked").append('<div style=\"margin-right:50px;white-space:nowrap; display:inline-block"><label style =\"color:#000\" for=\"event_guest_ids_' + id + '\">' + name + '</label>: <input type=\"checkbox\" value=\"' + id + '\" checked=\"checked\" name=\"event[guest_ids][]\" id=\"event_guest_ids_' + id + '\">');
+  $("#checked").append('<label style=\"margin-right:50px;white-space:nowrap; display:inline-block"><label style =\"color:#000\" for=\"event_guest_ids_' + id + '\">' + name + '</label>: <input type=\"checkbox\" value=\"' + id + '\" checked=\"checked\" name=\"event[guest_ids][]\" id=\"event_guest_ids_' + id + '\"><span></span></label>');
   });
 </script>
 <% end %>

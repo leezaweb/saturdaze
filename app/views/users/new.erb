@@ -1,6 +1,6 @@
 
 <% if @user.errors.any? %>
-<ul class="errors" style="margin-top: 50px">
+<ul class="errors" style="margin-top: -50px">
   <% @user.errors.full_messages.each do |msg|  %>
   <li>
     <%= msg %>
@@ -9,12 +9,39 @@
 </ul>
 <% end  %>
 
-<%= form_for @user, html: {style: "margin-top:-150px"}  do |f| %>
+<%= form_for @user, html: {style: "margin-top:-50px"}  do |f| %>
 <h2>Create Account</h2>
-  First Name: <%= f.text_field :first_name %><br>
-  Last Name: <%= f.text_field :last_name %><br>
-  Email: <%= f.text_field :email %><br>
-  Password: <%= f.password_field :password %><br>
-  Password Confirmation: <%= f.password_field :password_confirmation %><br>
-  <%= f.submit "Create Account", class: "btn waves-effect waves-light"  %>
+<div class="input-field">
+
+  <%= f.text_field :first_name %>
+  <%= f.label :first_name %>
+
+</div><br>
+<div class="input-field">
+
+  <%= f.text_field :last_name %>
+  <%= f.label :last_name %>
+
+</div>
+<br>
+  <div class="input-field">
+
+  <%= f.text_field :email %>
+  <%= f.label :email %>
+
+</div><br>
+  <div class="input-field">
+
+  <%= f.password_field :password %>
+  <%= f.label :password %>
+
+</div>
+<br>
+  <div class="input-field">
+
+  <%= f.password_field :password_confirmation %>
+  <%= f.label :password_confirmation %>
+
+</div><br>
+  <%= f.submit "Create Account", class: "btn"  %>
 <% end %>
